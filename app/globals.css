@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/* =========================
+   BASE TYPOGRAPHY
+========================= */
+
+html, body {
+  font-family: inherit;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+}
+
+p, li {
+  font-weight: 400;
+}
+
+/* =========================
+   THEME
+========================= */
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+/* =========================
+   LAYOUT
+========================= */
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+ul {
+  margin-left: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+p, li {
+  line-height: 1.6;
+}
+
+/* =========================
+   PAGE LAYOUT
+========================= */
+
+.page-layout {
+  display: grid;
+  grid-template-columns: 0.5fr minmax(0, 960px) 1.5fr;
+}
+
+.page-content {
+  padding: 2rem 1.5rem;
+}
+
