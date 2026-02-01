@@ -16,7 +16,7 @@ export default function NavBar() {
       <nav style={{ padding: "1rem", borderBottom: "1px solid #ccc" }}>
         <Link href="/">Acasă</Link> |{" "}
         <Link href="/normative">Normative</Link> |{" "}
-        <Link href="/KnowledgeBase">Knowledge Base</Link> |{" "}
+        <Link href="/KnowledgeBase">Ghiduri de proiectare</Link> |{" "}
         <Link href="/calculatoare">Calculatoare</Link> |{" "}
         <Link href="/profil">Profil</Link>
       </nav>
