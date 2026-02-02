@@ -93,7 +93,7 @@ export default function HomePage() {
             {/* CTA Buttons */}
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                href="/ghiduri"
+                href="/KnowledgeBase"
                 className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-blue-600/25"
               >
                 <span>Explorează Ghidurile</span>
