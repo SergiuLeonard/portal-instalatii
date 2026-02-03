@@ -81,12 +81,6 @@ Conform Normativ C 107 / STAS
   };
 
   return (
-    // ... restul JSX-ului rămâne la fel
-    // Asigurați-vă că butonul cu onClick={handleExport} este prezent
-  );
-}
-
-  return (
     <div className="space-y-6">
       <div className="bg-green-900/20 border border-green-700/50 rounded-lg p-4">
         <p className="text-green-200 text-sm">
