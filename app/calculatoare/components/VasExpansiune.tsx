@@ -1,8 +1,9 @@
 "use client";
-
+import { useCallback } from "react"; // Adăugați useCallback
 import { useState, useMemo } from "react";
 
 export default function VasExpansiune() {
+    
   const [volumInstalatie, setVolumInstalatie] = useState(1000); // litri
   const [tempTur, setTempTur] = useState(80); // °C
   const [tempRetur, setTempRetur] = useState(60); // °C
@@ -10,6 +11,59 @@ export default function VasExpansiune() {
   const [presiuneMaxima, setPresiuneMaxima] = useState(60); // mH2O (6 bar ≈ 60 mH2O)
 
   const calcule = useMemo(() => {
+    // =========================
+    // EXPORT TXT
+    // =========================
+    const exportTxt = (
+    volumInstalatie: number,
+    tempTur: number,
+    tempRetur: number,
+    presiuneStatica: number,
+    presiuneMaxima: number,
+    calcule: { coefDilatare: number; volumDilatare: number; volumVas: number; presiunePreincarcare: number }
+    ) => {
+    const data = new Date().toLocaleDateString("ro-RO");
+
+    const txt = `
+    DIMENSIONARE VAS EXPANSIUNE
+    ============================
+    Data: ${data}
+
+    DATE DE INTRARE
+    ---------------
+    Volum instalație: ${volumInstalatie} L
+    Temperatură tur: ${tempTur}°C
+    Temperatură retur: ${tempRetur}°C
+    Presiune statică minimă: ${presiuneStatica} mH₂O (${(presiuneStatica / 10).toFixed(1)} bar)
+    Presiune maximă admisă: ${presiuneMaxima} mH₂O (${(presiuneMaxima / 10).toFixed(1)} bar)
+
+    CALCULE INTERMEDIARE
+    --------------------
+    Coeficient dilatare: β = ${calcule.coefDilatare.toFixed(5)} (${(calcule.coefDilatare * 100).toFixed(2)}%)
+    Volum dilatare: Vd = ${calcule.volumDilatare.toFixed(1)} L
+    Presiune preîncărcare: ${calcule.presiunePreincarcare.toFixed(1)} bar
+
+    FORMULA
+    -------
+    Vvas = Vd × (Pm + 1) / (Pm - Pi) × 1.2
+    Unde: Pm = presiune max (bar), Pi = presiune statică (bar)
+
+    REZULTAT
+    --------
+    VOLUM VAS EXPANSIUNE NECESAR: ${Math.ceil(calcule.volumVas / 10) * 10} L
+                                (calculat: ${calcule.volumVas.toFixed(1)} L)
+
+    Recomandare: vas cu membrană, presiune preîncărcare ${calcule.presiunePreincarcare.toFixed(1)} bar
+    Conform Normativ C 107 / STAS
+    ============================
+    `;
+
+    const blob = new Blob([txt], { type: "text/plain" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `vas_expansiune_${data.replace(/\./g, "-")}.txt`;
+    a.click();
+    };
     // Coeficient de dilatare pentru apă
     // Δv = 0.034 la Δt = 80°C (de la 4°C la 80°C)
     // Interpolare simplificată
@@ -30,7 +84,10 @@ export default function VasExpansiune() {
     
     // Presiune preîncărcare (cu 0.5 bar sub presiunea statică minimă)
     const presiunePreincarcare = Math.max(0.5, Pi - 0.5);
-
+      // Wrapper pentru export
+    const handleExport = useCallback(() => {
+        exportTxt(volumInstalatie, tempTur, tempRetur, presiuneStatica, presiuneMaxima, calcule);
+    }, [volumInstalatie, tempTur, tempRetur, presiuneStatica, presiuneMaxima, calcule]);
     return {
       coefDilatare,
       volumDilatare,
@@ -192,7 +249,15 @@ export default function VasExpansiune() {
           </div>
         )}
       </div>
-
+      {/* BUTON EXPORT */}
+      <div className="mt-6">
+        <button
+          onClick={handleExport}
+          className="w-full bg-green-700 hover:bg-green-600 text-white py-3 rounded-lg transition-colors font-medium"
+        >
+          📥 Descarcă calcul (.txt)
+        </button>
+      </div>
       <div className="p-3 bg-gray-800/50 rounded border border-gray-700">
         <p className="text-xs text-gray-500">
           <strong>Formulă simplificată:</strong><br/>
