@@ -95,7 +95,7 @@ export default function BreviarContent({ cod }: BreviarContentProps) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-700">
-                {breviar.continut.variabile.map((v, i) => (
+                {breviar.continut.variabile.map((v: { simbol: string; definitie: string; unitate: string }, i: number) => (
                   <tr key={i}>
                     <td className="p-2 font-mono text-blue-400 text-sm">{v.simbol}</td>
                     <td className="p-2 text-gray-300 text-sm">{v.definitie}</td>
