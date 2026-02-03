@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const navItems = [
   { href: "/", label: "Acasă" },
@@ -10,6 +11,9 @@ const navItems = [
   { href: "/calculatoare", label: "Calculatoare" },
   { href: "/profil", label: "Profil" },
 ];
+
+// Link către Chat Portal
+const CHAT_URL = "https://ephemchat-2.preview.emergentagent.com";
 
 export default function NavBar() {
   const pathname = usePathname();
@@ -54,10 +58,57 @@ export default function NavBar() {
                 </Link>
               );
             })}
+            
+            {/* Chat Button - Desktop */}
+            <a
+              href={CHAT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-2 flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-cyan-600 text-white hover:bg-cyan-500 transition-all duration-200 shadow-lg shadow-cyan-600/20"
+              title="Chat rapid pentru instalatori"
+            >
+              <svg 
+                className="w-4 h-4" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" 
+                />
+              </svg>
+              <span>Chat</span>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
+            {/* Chat Button - Mobile (icon only) */}
+            <a
+              href={CHAT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg bg-cyan-600 text-white hover:bg-cyan-500 transition-colors"
+              title="Chat rapid"
+            >
+              <svg 
+                className="w-5 h-5" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" 
+                />
+              </svg>
+            </a>
+            
             <MobileMenu pathname={pathname} />
           </div>
         </div>
@@ -121,6 +172,46 @@ function MobileMenu({ pathname }: { pathname: string }) {
                   </Link>
                 );
               })}
+              
+              {/* Separator */}
+              <div className="border-t border-gray-700 my-2" />
+              
+              {/* Chat Link in Mobile Menu */}
+              <a
+                href={CHAT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-3 px-4 py-3 text-sm text-cyan-400 hover:bg-gray-700 transition-colors"
+              >
+                <svg 
+                  className="w-5 h-5" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" 
+                  />
+                </svg>
+                <span>Chat Rapid</span>
+                <svg 
+                  className="w-4 h-4 ml-auto" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
+                  />
+                </svg>
+              </a>
             </div>
           </div>
         </>
@@ -128,6 +219,3 @@ function MobileMenu({ pathname }: { pathname: string }) {
     </div>
   );
 }
-
-// Don't forget to import useState at the top!
-import { useState } from "react";
