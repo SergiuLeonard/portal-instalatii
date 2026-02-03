@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 
 // Tipuri de elemente constructive cu rezistențe termice R (mp·K/W)
 const ELEMENTE_CONSTRUCTIVE = {
@@ -27,7 +27,16 @@ const ELEMENTE_CONSTRUCTIVE = {
     { id: "PPR1", nume: "Pardoseală peste subsol", R: 1.59, k: 1.0 },
     { id: "PPR2", nume: "Pardoseală pe sol", R: 3.02, k: 1.0 },
   ]
-};
+} as const;
+
+// Flatten pentru căutare rapidă
+const TOATE_ELEMENTELE_FLAT = [
+  ...ELEMENTE_CONSTRUCTIVE.pereti_exteriori,
+  ...ELEMENTE_CONSTRUCTIVE.ferestre,
+  ...ELEMENTE_CONSTRUCTIVE.usi_exterioare,
+  ...ELEMENTE_CONSTRUCTIVE.plansee,
+  ...ELEMENTE_CONSTRUCTIVE.pardoseli,
+];
 
 // Temperaturi exterioare de calcul pe zone climatice (România)
 const ZONE_CLIMATICE = [
@@ -35,10 +44,10 @@ const ZONE_CLIMATICE = [
   { id: "II", nume: "Zona II (ex: București)", te: -15 },
   { id: "III", nume: "Zona III (ex: Cluj)", te: -18 },
   { id: "IV", nume: "Zona IV (ex: Brașov)", te: -21 },
-];
+] as const;
 
 // Adaosuri pentru orientare
-const ADAOSURI_ORIENTARE: { [key: string]: number } = {
+const ADAOSURI_ORIENTARE = {
   "N": 0.05,
   "NE": 0.05,
   "NV": 0.05,
@@ -47,7 +56,7 @@ const ADAOSURI_ORIENTARE: { [key: string]: number } = {
   "S": -0.05,
   "SE": -0.05,
   "SV": -0.05,
-};
+} as const;
 
 // Tipuri de încăperi cu temperaturi interioare
 const TIPURI_INCAPERI = [
@@ -56,12 +65,15 @@ const TIPURI_INCAPERI = [
   { id: "bucatarie", nume: "Bucătărie", ti: 18 },
   { id: "hol", nume: "Hol / Coridor", ti: 18 },
   { id: "birou", nume: "Birou", ti: 20 },
-];
+] as const;
+
+type ElementConstructiv = typeof TOATE_ELEMENTELE_FLAT[number];
+type Orientare = keyof typeof ADAOSURI_ORIENTARE;
 
 interface ElementType {
   id: string;
   tip: string;
-  orientare: string;
+  orientare: Orientare;
   suprafata: number;
   R: number;
   k: number;
@@ -71,7 +83,19 @@ interface SelectOption {
   id: string;
   nume: string;
   categorie: string;
+  disabled?: boolean;
 }
+
+// Helper pentru a găsi elementul constructiv după ID
+const findElementById = (id: string): ElementConstructiv | undefined => {
+  return TOATE_ELEMENTELE_FLAT.find(e => e.id === id);
+};
+
+// Helper pentru a găsi numele elementului
+const getElementName = (id: string): string => {
+  const el = findElementById(id);
+  return el?.nume || id;
+};
 
 export default function CalculatorNecesarCaldura() {
   const [zonaClimatica, setZonaClimatica] = useState("III");
@@ -94,6 +118,7 @@ export default function CalculatorNecesarCaldura() {
     return tip?.ti ?? 20;
   }, [tipIncapere]);
 
+  // Calcule memoizate corect
   const calcule = useMemo(() => {
     const dt = ti - te;
     let Qt = 0;
@@ -111,14 +136,8 @@ export default function CalculatorNecesarCaldura() {
       const Q = (el.suprafata * dt * coefMajorare) / el.R * (1 + adaosOrientare);
       Qt += Q;
 
-      let numeElement = el.tip;
-      Object.values(ELEMENTE_CONSTRUCTIVE).forEach(categorie => {
-        const found = categorie.find(e => e.id === el.tip);
-        if (found) numeElement = found.nume;
-      });
-
       detaliiTransmisie.push({
-        element: `${numeElement} (${el.orientare})`,
+        element: `${getElementName(el.tip)} (${el.orientare})`,
         suprafata: el.suprafata,
         R: el.R,
         adaos: adaosOrientare * 100,
@@ -140,68 +159,63 @@ export default function CalculatorNecesarCaldura() {
     };
   }, [elemente, ti, te, volum, numarSchimburiAer]);
 
-  const adaugaElement = () => {
+  const adaugaElement = useCallback(() => {
     const newId = String(Date.now());
-    setElemente([
-      ...elemente,
+    setElemente(prev => [
+      ...prev,
       { id: newId, tip: "PE2", orientare: "N", suprafata: 10, R: 4.54, k: 1.0 },
     ]);
-  };
+  }, []);
 
-  const stergeElement = (id: string) => {
-    setElemente(elemente.filter((el) => el.id !== id));
-  };
+  const stergeElement = useCallback((id: string) => {
+    setElemente(prev => prev.filter((el) => el.id !== id));
+  }, []);
 
-  const actualizeazaElement = (id: string, field: string, value: string | number) => {
-    setElemente(
-      elemente.map((el) => {
-        if (el.id === id) {
-          const updated = { ...el, [field]: value };
-          if (field === "tip") {
-            const allElements = [
-              ...ELEMENTE_CONSTRUCTIVE.pereti_exteriori,
-              ...ELEMENTE_CONSTRUCTIVE.ferestre,
-              ...ELEMENTE_CONSTRUCTIVE.usi_exterioare,
-              ...ELEMENTE_CONSTRUCTIVE.plansee,
-              ...ELEMENTE_CONSTRUCTIVE.pardoseli,
-            ];
-            const found = allElements.find(e => e.id === value);
-            if (found) {
-              updated.R = found.R;
-              updated.k = found.k;
-            }
+  const actualizeazaElement = useCallback((id: string, field: keyof ElementType, value: string | number) => {
+    setElemente(prev =>
+      prev.map((el) => {
+        if (el.id !== id) return el;
+        
+        const updated = { ...el, [field]: value };
+        
+        if (field === "tip") {
+          const found = findElementById(String(value));
+          if (found) {
+            updated.R = found.R;
+            updated.k = found.k;
           }
-          return updated;
         }
-        return el;
+        
+        return updated;
       })
     );
-  };
+  }, []);
 
+  // Select options memoizate
   const toateElementele = useMemo((): SelectOption[] => {
     const toate: SelectOption[] = [];
     
-    toate.push({ id: "header_pereti", nume: "── Pereți Exteriori ──", categorie: "header" });
+    toate.push({ id: "header_pereti", nume: "── Pereți Exteriori ──", categorie: "header", disabled: true });
     ELEMENTE_CONSTRUCTIVE.pereti_exteriori.forEach(el => 
       toate.push({ id: el.id, nume: el.nume, categorie: "pereti" })
     );
     
-    toate.push({ id: "header_ferestre", nume: "── Ferestre ──", categorie: "header" });
+    toate.push({ id: "header_ferestre", nume: "── Ferestre ──", categorie: "header", disabled: true });
     ELEMENTE_CONSTRUCTIVE.ferestre.forEach(el => 
       toate.push({ id: el.id, nume: el.nume, categorie: "ferestre" })
     );
     
-    toate.push({ id: "header_usi", nume: "── Uși Exterioare ──", categorie: "header" });
+    toate.push({ id: "header_usi", nume: "── Uși Exterioare ──", categorie: "header", disabled: true });
     ELEMENTE_CONSTRUCTIVE.usi_exterioare.forEach(el => 
       toate.push({ id: el.id, nume: el.nume, categorie: "usi" })
     );
     
-    toate.push({ id: "header_plansee", nume: "── Planșee ──", categorie: "header" });
+    toate.push({ id: "header_plansee", nume: "── Planșee ──", categorie: "header", disabled: true });
     ELEMENTE_CONSTRUCTIVE.plansee.forEach(el => 
       toate.push({ id: el.id, nume: el.nume, categorie: "plansee" })
     );
     
-    toate.push({ id: "header_pardoseli", nume: "── Pardoseli ──", categorie: "header" });
+    toate.push({ id: "header_pardoseli", nume: "── Pardoseli ──", categorie: "header", disabled: true });
     ELEMENTE_CONSTRUCTIVE.pardoseli.forEach(el => 
       toate.push({ id: el.id, nume: el.nume, categorie: "pardoseli" })
     );
@@ -325,7 +339,7 @@ export default function CalculatorNecesarCaldura() {
                     <option 
                       key={opt.id} 
                       value={opt.id}
-                      disabled={opt.categorie === "header"}
+                      disabled={opt.disabled}
                     >
                       {opt.nume}
                     </option>
@@ -336,10 +350,10 @@ export default function CalculatorNecesarCaldura() {
               <div className="w-20">
                 <select
                   value={el.orientare}
-                  onChange={(e) => actualizeazaElement(el.id, "orientare", e.target.value)}
+                  onChange={(e) => actualizeazaElement(el.id, "orientare", e.target.value as Orientare)}
                   className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1.5 text-white text-sm"
                 >
-                  {Object.keys(ADAOSURI_ORIENTARE).map((or) => (
+                  {(Object.keys(ADAOSURI_ORIENTARE) as Orientare[]).map((or) => (
                     <option key={or} value={or}>{or}</option>
                   ))}
                 </select>
