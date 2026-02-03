@@ -81,7 +81,7 @@ export default function NecIncalzirePardoseala() {
 
   const calculePerIncapere = useMemo(() => {
     return incaperi.map((inc) => {
-      const pardoseala = TIPURI_PARDOSEALA[incip.tipPardoseala];
+      const pardoseala = TIPURI_PARDOSEALA[inc.tipPardoseala];
       const dTeava = DIAMETRE_TEVI[dateGenerale.diametruTeava];
       
       // Calcul necesar căldură specific
@@ -212,7 +212,7 @@ Data: ${data}
 DATE GENERALE
 -------------
 Temperatură tur/retur: ${dateGenerale.temperaturaTur}/${dateGenerale.temperaturaRetur}°C
-Temperatură sol: ${dateGenerale.tempSol}°C
+Temperatură sol: ${dateGenerale.temperaturaSol}°C
 Diametru țeavă: ${DIAMETRE_TEVI[dateGenerale.diametruTeava].nume}
 
 LISTA ÎNCĂPERI
