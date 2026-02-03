@@ -5,17 +5,25 @@ import CalculatorApaReceCalda from "./components/Apa";
 import CalculatorCanalizare from "./components/Canalizare";
 import CalculatorApeMeteorice from "./components/Meteorice";
 import CalculatorNecesarCaldura from "./components/CalculatorNecesarCaldura";
+import Conversii from "./components/Conversii";
+import DebitDiametru from "./components/DebitDiametru";
+import VasExpansiune from "./components/VasExpansiune";
+import CalculHidraulic from "./components/CalculHidraulic";
 
 export default function CalculatoarePage() {
   const [tabActiv, setTabActiv] = useState<
-    "apa" | "canalizare" | "meteorice" | "caldura"
+    "apa" | "canalizare" | "meteorice" | "caldura"| "conversii" | "vasexpansiune" | "debit" | "hidraulic" 
   >("apa");
 
   const tabs = [
     { id: "apa", label: "Apă Rece + Caldă", icon: "💧" },
     { id: "canalizare", label: "Canalizare", icon: "🔄" },
     { id: "meteorice", label: "Ape Meteorice", icon: "🌧️" },
-    { id: "caldura", label: "Necesar Căldură", icon: "🔥" }
+    { id: "caldura", label: "Necesar Căldură", icon: "🔥" },
+    { id: "conversii", label: "Conversii Unități", icon: "🔄" },
+    { id: "hidraulic", label: "Calcul Hidraulic", icon: "💧" },
+    { id: "vasexpansiune", label: "Vas Expansiune", icon: "🫗" },
+    { id: "debit", label: "Debit/Diametru", icon: "⚡" }
   ];
 
   return (
@@ -56,6 +64,10 @@ export default function CalculatoarePage() {
           {tabActiv === "canalizare" && <CalculatorCanalizare />}
           {tabActiv === "meteorice" && <CalculatorApeMeteorice />}
           {tabActiv === "caldura" && <CalculatorNecesarCaldura />}
+          {tabActiv === "conversii" && <Conversii />}
+          {tabActiv === "hidraulic" && <DebitDiametru />}
+          {tabActiv === "vasexpansiune" && <VasExpansiune />}
+          {tabActiv === "debit" && <CalculHidraulic />}
         </div>
       </div>
     </main>
