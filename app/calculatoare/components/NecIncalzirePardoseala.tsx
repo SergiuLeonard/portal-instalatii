@@ -38,7 +38,7 @@ interface Incapere {
   suprafata: number;
   tipPardoseala: keyof typeof TIPURI_PARDOSEALA;
   tempInterioara: number;
-  tempSol: number;
+  temperaturaSol: number;
   coeficientPierderi: number; // pentru spații adiacente neîncălzite
 }
 
@@ -61,7 +61,7 @@ export default function NecIncalzirePardoseala() {
       suprafata: 25,
       tipPardoseala: "parchet",
       tempInterioara: 22,
-      tempSol: 10,
+      temperaturaSol: 10,
       coeficientPierderi: 1.0,
     },
     {
@@ -70,7 +70,7 @@ export default function NecIncalzirePardoseala() {
       suprafata: 15,
       tipPardoseala: "parchet",
       tempInterioara: 20,
-      tempSol: 10,
+      temperaturaSol: 10,
       coeficientPierderi: 1.0,
     },
   ]);
@@ -86,7 +86,7 @@ export default function NecIncalzirePardoseala() {
       
       // Calcul necesar căldură specific
       // q = (ti - tsol) / Rpardoseala * coefPierderi
-      const qNecesar = ((inc.tempInterioara - inc.tempSol) / pardoseala.R) * inc.coeficientPierderi;
+      const qNecesar = ((inc.tempInterioara - inc.temperaturaSol) / pardoseala.R) * inc.coeficientPierderi;
       
       // Ajustare pentru temperatura agentului termic
       const deltaTemp = dateGenerale.temperaturaTur - dateGenerale.temperaturaRetur;
@@ -162,7 +162,7 @@ export default function NecIncalzirePardoseala() {
         suprafata: 15,
         tipPardoseala: "parchet",
         tempInterioara: 20,
-        tempSol: 10,
+        temperaturaSol: 10,
         coeficientPierderi: 1.0,
       },
     ]);
@@ -303,7 +303,7 @@ Conform Normativ C 107-4 / EN 1264
             <input
               type="number"
               value={dateGenerale.temperaturaSol}
-              onChange={(e) => setDateGenerale({ ...dateGenerale, tempSol: Number(e.target.value) })}
+              onChange={(e) => setDateGenerale({ ...dateGenerale, temperaturaSol: Number(e.target.value) })}
               min="0"
               max="20"
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
