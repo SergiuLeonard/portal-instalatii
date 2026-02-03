@@ -13,7 +13,7 @@ const features = [
     icon: "📖",
     title: "Ghiduri de Proiectare",
     description: "Ghiduri detaliate pentru instalații sanitare, termice, electrice, gaze, ventilare, automatizări și clădiri pasive.",
-    href: "/ghiduri",
+    href: "/KnowledgeBase",
     color: "from-purple-600 to-purple-800",
     iconBg: "bg-purple-600",
   },
@@ -253,11 +253,11 @@ export default function HomePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { title: "Calculator Debit Apă", href: "/calculatoare", tag: "Popular" },
-              { title: "Ghid Instalații Termice", href: "/ghiduri", tag: "Recomandat" },
+              { title: "Ghid Instalații Termice", href: "/KnowledgeBase", tag: "Recomandat" },
               { title: "Normativ I9-2022", href: "/normative", tag: "Actualizat" },
               { title: "Calculator Pierderi Sarcină", href: "/calculatoare", tag: "Nou" },
-              { title: "Clădiri Pasive - PHPP", href: "/ghiduri", tag: "nZEB" },
-              { title: "Certificare Energetică", href: "/ghiduri", tag: "MC001" },
+              { title: "Clădiri Pasive - PHPP", href: "/KnowledgeBase", tag: "nZEB" },
+              { title: "Certificare Energetică", href: "/KnowledgeBase", tag: "MC001" },
             ].map((item, index) => (
               <Link
                 key={index}
@@ -289,7 +289,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                href="/ghiduri"
+                href="/KnowledgeBase"
                 className="inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-gray-900 font-semibold px-6 py-3 rounded-xl transition-colors"
               >
                 <span>📖</span>
@@ -322,7 +322,7 @@ export default function HomePage() {
               <Link href="/normative" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Normative
               </Link>
-              <Link href="/ghiduri" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <Link href="/KnowledgeBase" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Ghiduri
               </Link>
               <Link href="/calculatoare" className="text-gray-400 hover:text-white text-sm transition-colors">
