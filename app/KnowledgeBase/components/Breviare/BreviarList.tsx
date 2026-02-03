@@ -12,7 +12,7 @@ import {
   breviareAutomatizari,
   breviareEficientaEnergetica,
   breviareHidroedilitare,
-  breviareManagement,
+  breviareManagementResurse,
   breviareFundamente,
   DomeniuInfo 
 } from "./../lib/breviare";
@@ -50,7 +50,7 @@ export default function BreviarList({ domeniu, onSelect, selectedCod }: BreviarL
       case 'hidroedilitare':
         return breviareHidroedilitare;
       case 'management':
-        return breviareManagement;
+        return breviareManagementResurse;
       case 'fundamente':
         return breviareFundamente;
       default:

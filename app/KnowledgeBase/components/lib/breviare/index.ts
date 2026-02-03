@@ -19,7 +19,7 @@ import { breviareCladiriSpeciale } from './cladiri-speciale';
 import { breviareAutomatizari } from './automatizari';
 import { breviareEficientaEnergetica } from './eficienta-energetica';
 import { breviareHidroedilitare } from './hidroedilitare';
-import { breviareManagement } from './management';
+import { breviareManagementResurse } from './management';
 import { breviareFundamente } from './fundamente';
 
 // Export individual
@@ -35,7 +35,7 @@ export {
   breviareAutomatizari,
   breviareEficientaEnergetica,
   breviareHidroedilitare,
-  breviareManagement,
+  breviareManagementResurse,
   breviareFundamente
 };
 
@@ -52,7 +52,7 @@ export const toateBreviarele = [
   ...breviareAutomatizari,
   ...breviareEficientaEnergetica,
   ...breviareHidroedilitare,
-  ...breviareManagement,
+  ...breviareManagementResurse,
   ...breviareFundamente
 ];
 
