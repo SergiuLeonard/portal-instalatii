@@ -2,8 +2,19 @@
 
 import { useState, useMemo } from "react";
 
-// Categorii de conversie
-const CATEGORII = {
+// Definim tipurile
+interface Unitate {
+  nume: string;
+  factor?: number;
+}
+
+interface CategorieConversie {
+  nume: string;
+  unitati: Record<string, Unitate>;
+}
+
+// Categorii de conversie cu tipizare strictă
+const CATEGORII: Record<string, CategorieConversie> = {
   presiune: {
     nume: "Presiune",
     unitati: {
@@ -55,8 +66,10 @@ const CATEGORII = {
   },
 };
 
+type CategorieKey = keyof typeof CATEGORII;
+
 export default function Conversii() {
-  const [categorie, setCategorie] = useState<keyof typeof CATEGORII>("presiune");
+  const [categorie, setCategorie] = useState<CategorieKey>("presiune");
   const [valoare, setValoare] = useState(1);
   const [dinUnitate, setDinUnitate] = useState("bar");
   const [inUnitate, setInUnitate] = useState("mH2O");
@@ -66,8 +79,8 @@ export default function Conversii() {
   // Recalculează unitățile implicite când se schimbă categoria
   useMemo(() => {
     const unitati = Object.keys(unitatiCurente);
-    setDinUnitate(unitati[0]);
-    setInUnitate(unitati[1] || unitati[0]);
+    setDinUnitate(unitati[0] || "");
+    setInUnitate(unitati[1] || unitati[0] || "");
   }, [categorie, unitatiCurente]);
 
   const rezultat = useMemo(() => {
@@ -86,18 +99,23 @@ export default function Conversii() {
     }
     
     // Restul - conversie prin factor
-    const factorDin = cat.unitati[dinUnitate].factor || 1;
-    const factorIn = cat.unitati[inUnitate].factor || 1;
+    const unitateDin = cat.unitati[dinUnitate];
+    const unitateIn = cat.unitati[inUnitate];
+    
+    if (!unitateDin || !unitateIn) return 0;
+    
+    const factorDin = unitateDin.factor || 1;
+    const factorIn = unitateIn.factor || 1;
     return (valoare * factorDin) / factorIn;
   }, [categorie, valoare, dinUnitate, inUnitate]);
 
   // Conversii rapide comune în instalații
   const conversiiRapide = [
-    { valoare: 1, din: "bar", in: "mH2O", cat: "presiune" },
-    { valoare: 1, din: "atm", in: "bar", cat: "presiune" },
-    { valoare: 10, din: "mH2O", in: "Pa", cat: "presiune" },
-    { valoare: 1, din: "kW", in: "kcal/h", cat: "putere" },
-    { valoare: 1163, din: "W", in: "kcal/h", cat: "putere" },
+    { valoare: 1, din: "bar", in: "mH2O", cat: "presiune" as CategorieKey },
+    { valoare: 1, din: "atm", in: "bar", cat: "presiune" as CategorieKey },
+    { valoare: 10, din: "mH2O", in: "Pa", cat: "presiune" as CategorieKey },
+    { valoare: 1, din: "kW", in: "kcal/h", cat: "putere" as CategorieKey },
+    { valoare: 1163, din: "W", in: "kcal/h", cat: "putere" as CategorieKey },
   ] as const;
 
   return (
@@ -113,7 +131,7 @@ export default function Conversii() {
 
       {/* Selectare categorie */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
-        {(Object.keys(CATEGORII) as Array<keyof typeof CATEGORII>).map((cat) => (
+        {(Object.keys(CATEGORII) as CategorieKey[]).map((cat) => (
           <button
             key={cat}
             onClick={() => setCategorie(cat)}
@@ -189,7 +207,7 @@ export default function Conversii() {
               {rezultat.toLocaleString("ro-RO", { maximumFractionDigits: 6 })}
             </p>
             <p className="text-gray-500 text-sm mt-1">
-              {unitatiCurente[inUnitate as keyof typeof unitatiCurente]?.nume}
+              {unitatiCurente[inUnitate]?.nume || ""}
             </p>
           </div>
         </div>
@@ -199,28 +217,39 @@ export default function Conversii() {
       <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-4">
         <h4 className="text-sm font-semibold text-gray-400 mb-3">Conversii rapide frecvente:</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-          {conversiiRapide.map((conv, idx) => (
-            <button
-              key={idx}
-              onClick={() => {
-                setCategorie(conv.cat as keyof typeof CATEGORII);
-                setValoare(conv.valoare);
-                setDinUnitate(conv.din);
-                setInUnitate(conv.in);
-              }}
-              className="text-left p-2 bg-gray-800 hover:bg-gray-700 rounded text-sm transition-colors"
-            >
-              <span className="text-cyan-400">{conv.valoare} {conv.din}</span>
-              <span className="text-gray-500"> = </span>
-              <span className="text-green-400">
-                {((() => {
-                  const cat = CATEGORII[conv.cat as keyof typeof CATEGORII];
-                  if (conv.cat === "temperatura") return 0;
-                  return (conv.valoare * (cat.unitati[conv.din].factor || 1)) / (cat.unitati[conv.in].factor || 1);
-                })()).toFixed(3)} {conv.in}
-              </span>
-            </button>
-          ))}
+          {conversiiRapide.map((conv, idx) => {
+            const cat = CATEGORII[conv.cat];
+            const unitDin = cat.unitati[conv.din];
+            const unitIn = cat.unitati[conv.in];
+            let rez = 0;
+            
+            if (conv.cat === "temperatura") {
+              // Skip temperatură în conversii rapide pentru simplitate
+            } else {
+              const factorDin = unitDin?.factor || 1;
+              const factorIn = unitIn?.factor || 1;
+              rez = (conv.valoare * factorDin) / factorIn;
+            }
+            
+            return (
+              <button
+                key={idx}
+                onClick={() => {
+                  setCategorie(conv.cat);
+                  setValoare(conv.valoare);
+                  setDinUnitate(conv.din);
+                  setInUnitate(conv.in);
+                }}
+                className="text-left p-2 bg-gray-800 hover:bg-gray-700 rounded text-sm transition-colors"
+              >
+                <span className="text-cyan-400">{conv.valoare} {conv.din}</span>
+                <span className="text-gray-500"> = </span>
+                <span className="text-green-400">
+                  {rez.toFixed(3)} {conv.in}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
