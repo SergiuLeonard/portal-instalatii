@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback } from "react"; // Adăugați useCallback la importul existent
 import { useState, useMemo } from "react";
 
 // Coeficienți de frecare pentru calcul hidraulic (formula Hazen-Williams simplificată)
@@ -20,7 +21,64 @@ const CALCUL_HIDRaulic = (Q: number, d: number, L: number, zetaTotal: number) =>
   
   const pierdereLiniara = R * L; // Pa
   const pierdereLocala = zetaTotal * (1000 * Math.pow(v, 2)) / 2; // Pa
+  // =========================
+// EXPORT TXT
+// =========================
+const exportTxt = (
+  Q: number,
+  d: number,
+  L: number,
+  zetaTotal: number,
+  calcule: { v: number; R: number; pierdereLiniara: number; pierdereLocala: number; total: number },
+  elementeLocale: Array<{tip: string; cantitate: number}>
+) => {
+  const data = new Date().toLocaleDateString("ro-RO");
   
+  let elementeTxt = "";
+  elementeLocale.forEach((el, idx) => {
+    const nume = REZISTENTE_LOCALE[el.tip as keyof typeof REZISTENTE_LOCALE]?.nume || el.tip;
+    elementeTxt += `${idx + 1}. ${nume} × ${el.cantitate} buc (ζ = ${REZISTENTE_LOCALE[el.tip as keyof typeof REZISTENTE_LOCALE]?.zeta || 0})\n`;
+  });
+
+  const txt = `
+CALCUL HIDRAULIC - PIERDERI DE SARCINA
+=====================================
+Data: ${data}
+
+DATE DE INTRARE
+---------------
+Debit Q = ${Q} m³/h
+Diametru d = DN ${d} mm
+Lungime conductă L = ${L} m
+Rezistențe locale totale Σζ = ${zetaTotal.toFixed(1)}
+
+ELEMENTE LOCALE
+---------------
+${elementeTxt || "Fără elemente locale adăugate"}
+
+CALCULE
+-------
+Viteză de curgere: v = ${calcule.v.toFixed(2)} m/s
+Pierdere liniară: R = ${(calcule.R / 100).toFixed(2)} mmH₂O/m
+Pierdere liniară totală: R×L = ${(calcule.pierdereLiniara / 100).toFixed(2)} mmH₂O
+Pierdere locală totală: Z = ${(calcule.pierdereLocala / 100).toFixed(2)} mmH₂O
+
+REZULTAT FINAL
+--------------
+PIERDERE TOTALĂ DE SARCINĂ: ${(calcule.total / 100).toFixed(2)} mmH₂O
+                                          ≈ ${(calcule.total / 9806.65).toFixed(3)} mH₂O
+
+Formula: Δp = R×L + Σζ × (ρv²/2)
+ρ = 1000 kg/m³ pentru apă
+=====================================
+`;
+
+  const blob = new Blob([txt], { type: "text/plain" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `calcul_hidraulic_${data.replace(/\./g, "-")}.txt`;
+  a.click();
+};
   return {
     v,
     R,
@@ -80,7 +138,10 @@ export default function CalculHidraulic() {
   const stergeElement = (index: number) => {
     setElementeLocale(elementeLocale.filter((_, i) => i !== index));
   };
-
+  // Wrapper pentru export
+  const handleExport = useCallback(() => {
+    exportTxt(Q, d, L, zetaTotal, calcule, elementeLocale);
+  }, [Q, d, L, zetaTotal, calcule, elementeLocale]);
   // Recomandări diametre
   const diametreStandard = [15, 20, 25, 32, 40, 50, 65, 80, 100, 125, 150, 200];
 
@@ -234,7 +295,15 @@ export default function CalculHidraulic() {
           </div>
         )}
       </div>
-
+        {/* BUTON EXPORT */}
+        <div className="mt-6">
+          <button
+            onClick={handleExport}
+            className="w-full bg-green-700 hover:bg-green-600 text-white py-3 rounded-lg transition-colors font-medium"
+          >
+            📥 Descarcă calcul (.txt)
+          </button>
+        </div>
       <div className="p-3 bg-gray-800/50 rounded border border-gray-700">
         <p className="text-xs text-gray-500">
           <strong>Formulă:</strong> Δp = λ × (L/d) × (ρv²/2) + Σζ × (ρv²/2)<br/>
