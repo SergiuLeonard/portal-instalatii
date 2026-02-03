@@ -14,7 +14,7 @@ export default function CalculatoarePage() {
   const tabs = [
     { id: "apa", label: "Apă Rece + Caldă", icon: "💧" },
     { id: "canalizare", label: "Canalizare", icon: "🔄" },
-    { id: "meteorice", label: "Ape Meteorice", icon: "🌧️" }
+    { id: "meteorice", label: "Ape Meteorice", icon: "🌧️" },
     { id: "caldura", label: "Necesar Căldură", icon: "🔥" }
   ];
 
