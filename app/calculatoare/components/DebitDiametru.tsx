@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback } from "react"; // Adăugați useCallback
 import { useState, useMemo } from "react";
 
 export default function DebitDiametru() {
@@ -28,7 +29,60 @@ export default function DebitDiametru() {
       return { Q: debit, v: vCalc, d: diametru };
     }
   }, [modCalcul, viteza, diametru, debit]);
+    // =========================
+// EXPORT TXT
+// =========================
+const exportTxt = (
+  modCalcul: string,
+  viteza: number,
+  diametru: number,
+  debit: number,
+  calcule: { Q: number; v: number; d: number }
+) => {
+  const data = new Date().toLocaleDateString("ro-RO");
+  
+  const modText = {
+    debit: "Debit Q (din v și d)",
+    diametru: "Diametru d (din Q și v)",
+    viteza: "Viteză v (din Q și d)",
+  }[modCalcul] || modCalcul;
 
+  const txt = `
+CALCUL DEBIT / DIAMETRU / VITEZA
+=================================
+Data: ${data}
+
+MOD DE CALCUL: ${modText}
+
+DATE DE INTRARE
+---------------
+${modCalcul !== "debit" ? `Debit Q = ${debit} m³/h\n` : ""}${modCalcul !== "diametru" ? `Diametru d = DN ${diametru} mm\n` : ""}${modCalcul !== "viteza" ? `Viteză v = ${viteza} m/s\n` : ""}
+
+CALCULE
+-------
+Aria secțiunii: A = π × d²/4 = ${(Math.PI * Math.pow((modCalcul === "diametru" ? calcule.d : diametru) / 1000, 2) / 4).toFixed(6)} m²
+
+REZULTATE
+---------
+Debit Q = ${calcule.Q.toFixed(3)} m³/h
+        = ${(calcule.Q * 1000 / 3600).toFixed(3)} l/s
+
+Diametru d = ${calcule.d.toFixed(1)} mm
+${calcule.d !== Math.round(calcule.d) ? `   (diametru standard recomandat: DN ${Math.ceil(calcule.d / 10) * 10} mm)` : ""}
+
+Viteză v = ${calcule.v.toFixed(2)} m/s
+${calcule.v < 0.5 ? "   ⚠️ Viteză prea mică!" : calcule.v > 2.0 ? "   ⚠️ Viteză prea mare!" : "   ✓ Viteză în limite normale"}
+
+Formula: Q = v × A = v × (π × d²/4)
+=================================
+`;
+
+  const blob = new Blob([txt], { type: "text/plain" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `calcul_debit_${data.replace(/\./g, "-")}.txt`;
+  a.click();
+};
   // Diametre standard
   const diametreStandard = [15, 20, 25, 32, 40, 50, 65, 80, 100, 125, 150, 200, 250, 300];
 
@@ -37,6 +91,10 @@ export default function DebitDiametru() {
     if (modCalcul !== "diametru") return null;
     return diametreStandard.find(d => d >= calcule.d) || diametreStandard[diametreStandard.length - 1];
   }, [calcule.d, modCalcul]);
+    // Wrapper pentru export
+  const handleExport = useCallback(() => {
+    exportTxt(modCalcul, viteza, diametru, debit, calcule);
+  }, [modCalcul, viteza, diametru, debit, calcule]);
 
   // Viteze recomandate
   const vitezeRec = {
@@ -238,7 +296,15 @@ export default function DebitDiametru() {
           ))}
         </div>
       </div>
-
+                {/* BUTON EXPORT */}
+      <div className="mt-6">
+        <button
+          onClick={handleExport}
+          className="w-full bg-green-700 hover:bg-green-600 text-white py-3 rounded-lg transition-colors font-medium"
+        >
+          📥 Descarcă calcul (.txt)
+        </button>
+      </div>
       <div className="p-3 bg-gray-800/50 rounded border border-gray-700">
         <p className="text-xs text-gray-500">
           <strong>Formulă:</strong> Q = v × A = v × (π × d² / 4)<br/>
