@@ -4,16 +4,18 @@ import { useState } from "react";
 import CalculatorApaReceCalda from "./components/Apa";
 import CalculatorCanalizare from "./components/Canalizare";
 import CalculatorApeMeteorice from "./components/Meteorice";
+import CalculatorNecesarCaldura from "./components/CalculatorNecesarCaldura";
 
 export default function CalculatoarePage() {
   const [tabActiv, setTabActiv] = useState<
-    "apa" | "canalizare" | "meteorice"
+    "apa" | "canalizare" | "meteorice" | "caldura"
   >("apa");
 
   const tabs = [
     { id: "apa", label: "Apă Rece + Caldă", icon: "💧" },
     { id: "canalizare", label: "Canalizare", icon: "🔄" },
     { id: "meteorice", label: "Ape Meteorice", icon: "🌧️" }
+    { id: "caldura", label: "Necesar Căldură", icon: "🔥" }
   ];
 
   return (
@@ -53,6 +55,7 @@ export default function CalculatoarePage() {
           {tabActiv === "apa" && <CalculatorApaReceCalda />}
           {tabActiv === "canalizare" && <CalculatorCanalizare />}
           {tabActiv === "meteorice" && <CalculatorApeMeteorice />}
+          {tabActiv === "caldura" && <CalculatorNecesarCaldura />}
         </div>
       </div>
     </main>
