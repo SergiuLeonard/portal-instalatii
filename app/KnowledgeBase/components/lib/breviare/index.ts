@@ -7,6 +7,7 @@ export type { DomeniuType, DomeniuInfo, Breviar } from './types';
 export { domenii } from './domenii';
 
 // Breviare pe domenii - importă toate
+import { Breviar } from "./types";
 import { breviareSanitare } from './sanitare';
 import { breviareTermice } from './termice';
 import { breviareRacireVentilatie } from './racire-ventilatie';

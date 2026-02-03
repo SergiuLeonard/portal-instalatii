@@ -308,7 +308,6 @@ Putere: 7 × 36W = 252W (12.6 W/m²)
     cod: "B-E-004",
     titlu: "Protecții electrice - Curent nominal și declanșare",
     slug: "protectii-electrice-curent",
-    slug: "protectii-electrice-curent",
     nivel: "mediu",
     sursa: "Normativul I7 / SR HD 60364-4-43",
     areCalculator: true,

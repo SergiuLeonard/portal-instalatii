@@ -118,7 +118,7 @@ export default function BreviarContent({ cod }: BreviarContentProps) {
               {breviar.continut.exempluNumeric.date}
             </p>
             <div className="space-y-1 mb-3">
-              {breviar.continut.exempluNumeric.pasi.map((pas, i) => (
+              {breviar.continut.exempluNumeric.pasi.map((pas: string, i: number) => (
                 <p key={i} className="text-gray-300 font-mono text-xs">
                   <span className="text-gray-500 mr-2">{i + 1}.</span>
                   {pas}
@@ -146,7 +146,7 @@ export default function BreviarContent({ cod }: BreviarContentProps) {
               Observații și capcane
             </h3>
             <ul className="space-y-1">
-              {breviar.continut.observatii.map((obs, i) => (
+              {breviar.continut.observatii.map((obs: string, i: number) => (
                 <li key={i} className="flex items-start gap-2 text-gray-300 text-sm">
                   <span className="text-orange-400 mt-1">•</span>
                   <span>{obs}</span>
