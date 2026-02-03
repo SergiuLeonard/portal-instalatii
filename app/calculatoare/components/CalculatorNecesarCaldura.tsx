@@ -97,6 +97,18 @@ const getElementName = (id: string): string => {
   return el?.nume || id;
 };
 
+// Helper pentru a găsi numele zonei climatice
+const getZonaName = (id: string): string => {
+  const zona = ZONE_CLIMATICE.find(z => z.id === id);
+  return zona?.nume || id;
+};
+
+// Helper pentru a găsi numele tipului de încăpere
+const getTipIncapereName = (id: string): string => {
+  const tip = TIPURI_INCAPERI.find(t => t.id === id);
+  return tip?.nume || id;
+};
+
 export default function CalculatorNecesarCaldura() {
   const [zonaClimatica, setZonaClimatica] = useState("III");
   const [tipIncapere, setTipIncapere] = useState("camera");
@@ -158,6 +170,65 @@ export default function CalculatorNecesarCaldura() {
       detaliiTransmisie,
     };
   }, [elemente, ti, te, volum, numarSchimburiAer]);
+
+  // =========================
+  // EXPORT TXT
+  // =========================
+  const exportTxt = useCallback(() => {
+    const data = new Date().toLocaleDateString("ro-RO");
+    
+    let elementeTxt = "";
+    calcule.detaliiTransmisie.forEach((det, idx) => {
+      elementeTxt += `
+${idx + 1}. ${det.element}
+   Suprafata: ${det.suprafata.toFixed(1)} m²
+   Rezistenta termica R: ${det.R.toFixed(2)} m²K/W
+   Adaos orientare: ${det.adaos > 0 ? "+" : ""}${det.adaos.toFixed(0)}%
+   Pierdere caldura Q: ${det.Q.toFixed(0)} W
+`;
+    });
+
+    const txt = `
+CALCUL NECESAR DE CALDURA
+=========================
+Data: ${data}
+
+DATE GENERALE
+-------------
+Zona climatica: ${getZonaName(zonaClimatica)} (te = ${calcule.te}°C)
+Tip incapere: ${getTipIncapereName(tipIncapere)} (ti = ${calcule.ti}°C)
+Volum incapere: ${volum} m³
+Schimburi de aer pe ora: ${numarSchimburiAer}
+
+Diferenta de temperatura Δt = ${calcule.dt} K
+
+ELEMENTE CONSTRUCTIVE
+---------------------${elementeTxt}
+
+CALCUL PIERDERI DE CALDURA
+--------------------------
+Qt (pierderi prin transmisie) = ${calcule.Qt} W
+Qv (pierderi prin ventilare) = ${calcule.Qv} W
+
+Qv = V × n × ρ × c × Δt / 3600
+   = ${volum} × ${numarSchimburiAer} × 1.2 × 1005 × ${calcule.dt} / 3600
+
+NECESAR TOTAL DE CALDURA
+------------------------
+Qtotal = Qt + Qv
+Qtotal = ${calcule.Qt} + ${calcule.Qv}
+Qtotal = ${calcule.Qtotal} W  ≈  ${(calcule.Qtotal / 1000).toFixed(2)} kW
+
+=========================
+Conform STAS 6472 / Normativ C107
+`;
+
+    const blob = new Blob([txt], { type: "text/plain" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `calcul_necesar_caldura_${data.replace(/\./g, "-")}.txt`;
+    a.click();
+  }, [calcule, zonaClimatica, tipIncapere, volum, numarSchimburiAer]);
 
   const adaugaElement = useCallback(() => {
     const newId = String(Date.now());
@@ -448,6 +519,16 @@ export default function CalculatorNecesarCaldura() {
             </div>
           </div>
         )}
+
+        {/* BUTON EXPORT TXT */}
+        <div className="mt-6">
+          <button
+            onClick={exportTxt}
+            className="w-full bg-green-700 hover:bg-green-600 text-white py-3 rounded-lg transition-colors font-medium"
+          >
+            📥 Descarcă calcul (.txt)
+          </button>
+        </div>
 
         <div className="mt-6 p-3 bg-gray-800/50 rounded border border-gray-700">
           <p className="text-xs text-gray-500">
