@@ -135,13 +135,63 @@ export default function CalculHidraulic() {
     setElementeLocale(nou);
   };
 
-  const stergeElement = (index: number) => {
+    const stergeElement = (index: number) => {
     setElementeLocale(elementeLocale.filter((_, i) => i !== index));
   };
-  // Wrapper pentru export
+
+  // =========================
+  // EXPORT TXT
+  // =========================
   const handleExport = useCallback(() => {
-    exportTxt(Q, d, L, zetaTotal, calcule, elementeLocale);
+    const data = new Date().toLocaleDateString("ro-RO");
+    
+    let elementeTxt = "";
+    elementeLocale.forEach((el, idx) => {
+      const nume = REZISTENTE_LOCALE[el.tip]?.nume || el.tip;
+      const zeta = REZISTENTE_LOCALE[el.tip]?.zeta || 0;
+      elementeTxt += `${idx + 1}. ${nume} × ${el.cantitate} buc (ζ = ${zeta})\n`;
+    });
+
+    const txt = `
+CALCUL HIDRAULIC - PIERDERI DE SARCINA
+=====================================
+Data: ${data}
+
+DATE DE INTRARE
+---------------
+Debit Q = ${Q} m³/h
+Diametru d = DN ${d} mm
+Lungime conductă L = ${L} m
+Rezistențe locale totale Σζ = ${zetaTotal.toFixed(1)}
+
+ELEMENTE LOCALE
+---------------
+${elementeTxt || "Fără elemente locale adăugate"}
+
+CALCULE
+-------
+Viteză de curgere: v = ${calcule.v.toFixed(2)} m/s
+Pierdere liniară: R = ${(calcule.R / 100).toFixed(2)} mmH₂O/m
+Pierdere liniară totală: R×L = ${(calcule.pierdereLiniara / 100).toFixed(2)} mmH₂O
+Pierdere locală totală: Z = ${(calcule.pierdereLocala / 100).toFixed(2)} mmH₂O
+
+REZULTAT FINAL
+--------------
+PIERDERE TOTALĂ DE SARCINĂ: ${(calcule.total / 100).toFixed(2)} mmH₂O
+                                          ≈ ${(calcule.total / 9806.65).toFixed(3)} mH₂O
+
+Formula: Δp = R×L + Σζ × (ρv²/2)
+ρ = 1000 kg/m³ pentru apă
+=====================================
+`;
+
+    const blob = new Blob([txt], { type: "text/plain" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `calcul_hidraulic_${data.replace(/\./g, "-")}.txt`;
+    a.click();
   }, [Q, d, L, zetaTotal, calcule, elementeLocale]);
+
   // Recomandări diametre
   const diametreStandard = [15, 20, 25, 32, 40, 50, 65, 80, 100, 125, 150, 200];
 
