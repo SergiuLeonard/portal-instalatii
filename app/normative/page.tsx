@@ -619,10 +619,10 @@ export default function NormativePage() {
             📚 Normative Tehnice
           </a>
           <a 
-            href="#bibliografie" 
+            href="/europene" 
             className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-sm transition-colors"
           >
-            📋 Bibliografie Concurs
+            🇪🇺 Proiecte Europene
           </a>
         </div>
 
@@ -806,25 +806,33 @@ export default function NormativePage() {
           )}
         </section>
 
-        {/* ==========================================
-            SECȚIUNEA BIBLIOGRAFIE
+                {/* ==========================================
+            SECȚIUNEA PROIECTE EUROPENE (actualizată din Bibliografie)
         ========================================== */}
-        <section id="bibliografie" className="mb-16">
+        <section id="europene" className="mb-16">
           <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-            <span>📋</span> Bibliografie pentru Concurs
+            <span>🇪🇺</span> Proiecte Europene pentru Instalații
           </h2>
           <p className="text-gray-400 mb-4">
-            Vezi bibliografia detaliată pentru pregătirea concursului ADR Nord-Vest cu scenarii practice, 
-            întrebări de examen și comparator legislativ.
+            Ghid simplificat pentru accesarea fondurilor europene în domeniul construcțiilor și instalațiilor.
+            Resurse esențiale pentru studenți și masteranzi.
           </p>
 
           <Link
-            href="/bibliografie"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-900/40 to-pink-900/40 hover:from-purple-900/60 hover:to-pink-900/60 border border-purple-500/30 text-white px-6 py-3 rounded-xl transition-all"
+            href="/europene"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-900/40 to-green-900/40 hover:from-blue-900/60 hover:to-green-900/60 border border-blue-500/30 text-white px-6 py-3 rounded-xl transition-all"
           >
-            <span>🎓</span>
-            Accesează Dashboard-ul de Învățare pentru Concurs →
+            <span>🚀</span>
+            Descoperă Proiecte Europene →
           </Link>
+          
+          <p className="mt-4 text-sm text-gray-500">
+            Descoperă Proiecte Europene{" "}
+            <Link href="/europene" className="text-cyan-400 hover:underline">
+              /europene
+            </Link>
+            {" "}pentru acces direct.
+          </p>
         </section>
 
         {/* ==========================================

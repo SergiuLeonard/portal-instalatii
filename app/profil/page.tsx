@@ -8,20 +8,8 @@ export default function ProfilPage() {
       <header className="bg-gray-900 border-b border-gray-700">
         <nav className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4">
-            <Link href="/" className="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:bg-gray-800 hover:text-white transition-all duration-200">
-              Acasă
-            </Link>
-            <Link href="/normative" className="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:bg-gray-800 hover:text-white transition-all duration-200">
-              Normative
-            </Link>
-            <Link href="/ghiduri" className="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:bg-gray-800 hover:text-white transition-all duration-200">
-              Ghiduri
-            </Link>
-            <Link href="/calculatoare" className="px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:bg-gray-800 hover:text-white transition-all duration-200">
-              Calculatoare
-            </Link>
             <Link href="/profil" className="px-3 py-2 rounded-lg text-sm font-medium bg-blue-600 text-white transition-all duration-200">
-              Profil
+              Curriculum vitae
             </Link>
           </div>
         </nav>

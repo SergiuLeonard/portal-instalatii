@@ -26,12 +26,12 @@ const features = [
     iconBg: "bg-emerald-600",
   },
   {
-    icon: "📋",
-    title: "Bibliografie Concurs",
-    description: "Material de studiu structurat pentru examenele de autorizare și atestare în domeniul instalațiilor.",
-    href: "/bibliografie",
-    color: "from-orange-600 to-orange-800",
-    iconBg: "bg-orange-600",
+    icon: "🇪🇺", // Schimbat din 📋
+    title: "Proiecte Europene", // Schimbat din Bibliografie Concurs
+    description: "Ghid simplificat pentru accesarea fondurilor UE în domeniul construcțiilor și instalațiilor.", // Descriere nouă
+    href: "/europene", // Schimbat din /bibliografie
+    color: "from-cyan-600 to-cyan-800", // Culoare nouă (tematică UE)
+    iconBg: "bg-cyan-600", // Culoare nouă
   },
 ];
 
@@ -221,17 +221,17 @@ export default function HomePage() {
               </div>
               <div className="bg-gray-800/50 backdrop-blur rounded-xl p-6 border border-gray-700">
                 <h3 className="text-xl font-semibold text-white mb-4">
-                  🎯 Pregătire Examene
+                  🎯 Resurse pentru Studenți
                 </h3>
                 <p className="text-gray-400 mb-4">
-                  Secțiune dedicată pentru pregătirea examenelor de autorizare ANRE, 
-                  atestare MLPDA și concursuri în domeniu.
+                  Explorează ghidurile despre fonduri europene disponibile pentru proiecte 
+                  în domeniul construcțiilor și instalațiilor.
                 </p>
                 <Link
-                  href="/bibliografie"
-                  className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors"
+                  href="/europene" // Schimbat din /bibliografie
+                  className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium transition-colors"
                 >
-                  <span>Vezi bibliografia</span>
+                  <span>Vezi Proiecte Europene</span> {/* Schimbat din Vezi bibliografia */}
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -307,7 +307,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Footer - Single Instance */}
       <footer className="bg-gray-800 border-t border-gray-700">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -329,6 +329,19 @@ export default function HomePage() {
                 Calculatoare
               </Link>
             </div>
+          </div>
+          
+          {/* Autor Site - Sub toate textele */}
+          <div className="mt-6 pt-6 border-t border-gray-700/50 flex justify-center">
+            <Link 
+              href="/profil" 
+              className="group flex items-center gap-2 text-xs text-gray-500 hover:text-cyan-400 transition-all duration-200"
+            >
+              <span className="w-6 h-6 rounded-full bg-gray-700 group-hover:bg-cyan-900/50 flex items-center justify-center transition-colors">
+                <span className="text-sm">👤</span>
+              </span>
+              <span className="group-hover:translate-x-0.5 transition-transform">Autor site</span>
+            </Link>
           </div>
         </div>
       </footer>

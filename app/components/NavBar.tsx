@@ -9,7 +9,7 @@ const navItems = [
   { href: "/normative", label: "Normative" },
   { href: "/KnowledgeBase", label: "Ghiduri de proiectare" },
   { href: "/calculatoare", label: "Calculatoare" },
-  { href: "/profil", label: "Profil" },
+  { href: "/europene", label: "Proiecte Europene" }, // Dacă ai adăugat pagina asta anterior
 ];
 
 // Link către Chat Portal
@@ -18,10 +18,8 @@ const CHAT_URL = "https://ephemchat-2.preview.emergentagent.com";
 export default function NavBar() {
   const pathname = usePathname();
 
-  // Ascundem NavBar pe pagina de CV
-  if (pathname.startsWith("/profil")) {
-    return null;
-  }
+  // Eliminat condiția de ascundere pe /profil ca să vezi nav și pe pagina de CV
+  // (dacă vrei să rămână fără nav pe /profil, păstrează: if (pathname.startsWith("/profil")) return null;)
 
   return (
     <header className="no-print bg-gray-900 border-b border-gray-700 sticky top-0 z-50">
@@ -109,7 +107,7 @@ export default function NavBar() {
               </svg>
             </a>
             
-            <MobileMenu pathname={pathname} />
+            <MobileMenu pathname={pathname} navItems={navItems} />
           </div>
         </div>
       </nav>
@@ -117,7 +115,8 @@ export default function NavBar() {
   );
 }
 
-function MobileMenu({ pathname }: { pathname: string }) {
+// MobileMenu trebuie să primească navItems ca prop sau să-l redefinească interior
+function MobileMenu({ pathname, navItems }: { pathname: string; navItems: {href: string; label: string}[] }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
