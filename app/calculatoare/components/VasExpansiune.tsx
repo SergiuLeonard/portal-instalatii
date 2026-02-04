@@ -120,6 +120,8 @@ Conform Normativ C 107 / STAS
               min="100"
               step="50"
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+              placeholder="Introduceți volumul instalației"
+              title="Introduceți volumul instalației în litri"
             />
             <p className="text-xs text-gray-500 mt-1">Tipic: 10-15 L/kW pentru încălzire</p>
           </div>
@@ -133,6 +135,8 @@ Conform Normativ C 107 / STAS
               min="40"
               max="95"
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+              placeholder="Introduceți temperatura tur"
+              title="Introduceți temperatura tur în grade Celsius"
             />
           </div>
 
@@ -145,6 +149,8 @@ Conform Normativ C 107 / STAS
               min="30"
               max="80"
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+              placeholder="Introduceți temperatura retur"
+              title="Introduceți temperatura retur în grade Celsius"
             />
           </div>
 
@@ -157,6 +163,8 @@ Conform Normativ C 107 / STAS
               min="5"
               step="1"
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+              placeholder="Introduceți presiunea statică minimă"
+              title="Introduceți presiunea statică minimă în mH₂O"
             />
             <p className="text-xs text-gray-500 mt-1">Coloană apă până la cel mai înalt punct</p>
           </div>
@@ -170,6 +178,8 @@ Conform Normativ C 107 / STAS
               min="30"
               step="5"
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+              placeholder="Introduceți presiunea maximă admisă"
+              title="Introduceți presiunea maximă admisă în mH₂O"
             />
             <p className="text-xs text-gray-500 mt-1">Limita echipamentelor (60 mH₂O ≈ 6 bar)</p>
           </div>

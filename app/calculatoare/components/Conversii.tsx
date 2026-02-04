@@ -162,6 +162,8 @@ export default function Conversii() {
               onChange={(e) => setValoare(Number(e.target.value))}
               step="0.001"
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white text-lg"
+              placeholder="Introduceți valoarea"
+              title="Introduceți valoarea pentru conversie"
             />
           </div>
 
@@ -172,6 +174,7 @@ export default function Conversii() {
               value={dinUnitate}
               onChange={(e) => setDinUnitate(e.target.value)}
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+              title="Selectați unitatea de intrare"
             >
               {Object.entries(unitatiCurente).map(([key, unit]) => (
                 <option key={key} value={key}>{unit.nume}</option>
@@ -191,6 +194,7 @@ export default function Conversii() {
               value={inUnitate}
               onChange={(e) => setInUnitate(e.target.value)}
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+              title="Selectați unitatea de ieșire"
             >
               {Object.entries(unitatiCurente).map(([key, unit]) => (
                 <option key={key} value={key}>{unit.nume}</option>

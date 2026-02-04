@@ -114,6 +114,8 @@ export default function CalculatorDebitGaze() {
                       value={aparat.nume}
                       onChange={(e) => updateAparat(idx, "nume", e.target.value)}
                       className="bg-transparent font-medium text-sm w-full focus:outline-none"
+                      placeholder="Introduceți numele aparatului"
+                      title="Nume aparat"
                     />
                     <button
                       onClick={() => stergeAparat(idx)}
@@ -130,6 +132,8 @@ export default function CalculatorDebitGaze() {
                         value={aparat.putere}
                         onChange={(e) => updateAparat(idx, "putere", parseFloat(e.target.value))}
                         className="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-sm"
+                        placeholder="Introduceți puterea"
+                        title="Putere aparat în kW"
                       />
                     </div>
                     <div>
@@ -139,6 +143,8 @@ export default function CalculatorDebitGaze() {
                         value={aparat.randament}
                         onChange={(e) => updateAparat(idx, "randament", parseFloat(e.target.value))}
                         className="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-sm"
+                        placeholder="Introduceți randamentul"
+                        title="Randament aparat în procente"
                       />
                     </div>
                   </div>

@@ -33,7 +33,7 @@ export default function CalculatorIluminat() {
     };
   }, [suprafata, luxNecesar, fluxLampa, utilizare, factorMentinere]);
 
-  constpreseturiLux = [
+  const preseturiLux = [
     { nume: "Depozit", val: 150 },
     { nume: "Birou", val: 500 },
     { nume: "Clasă", val: 300 },

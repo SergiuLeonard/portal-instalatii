@@ -219,6 +219,8 @@ Formula: Δp = R×L + Σζ × (ρv²/2)
               min="0.1"
               step="0.1"
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+              placeholder="Introduceți debitul (Q)"
+              title="Introduceți debitul în metri cubi pe oră"
             />
             <p className="text-xs text-gray-500 mt-1">{Q > 0 ? `${(Q * 1000 / 3600).toFixed(2)} l/s` : ""}</p>
           </div>
@@ -229,6 +231,8 @@ Formula: Δp = R×L + Σζ × (ρv²/2)
               value={d}
               onChange={(e) => setD(Number(e.target.value))}
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+              title="Selectați diametrul conductei"
+              aria-label="Selectați diametrul conductei"
             >
               {diametreStandard.map((di) => (
                 <option key={di} value={di}>DN {di}</option>
@@ -245,6 +249,8 @@ Formula: Δp = R×L + Σζ × (ρv²/2)
               min="1"
               step="1"
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+              placeholder="Introduceți lungimea (L)"
+              title="Introduceți lungimea conductei în metri"
             />
           </div>
         </div>
@@ -269,6 +275,8 @@ Formula: Δp = R×L + Σζ × (ρv²/2)
                 value={el.tip}
                 onChange={(e) => actualizeazaElement(idx, "tip", e.target.value)}
                 className="flex-1 bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm text-white"
+                aria-label={`Selectați tipul elementului local ${idx + 1}`}
+                title={`Selectați tipul elementului local ${idx + 1}`}
               >
                 {Object.entries(REZISTENTE_LOCALE).map(([key, val]) => (
                   <option key={key} value={key}>{val.nume} (ζ={val.zeta})</option>
@@ -280,6 +288,8 @@ Formula: Δp = R×L + Σζ × (ρv²/2)
                 onChange={(e) => actualizeazaElement(idx, "cantitate", e.target.value)}
                 min="1"
                 className="w-20 bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm text-white text-center"
+                placeholder="Cantitate"
+                title="Introduceți cantitatea"
               />
               <button
                 onClick={() => stergeElement(idx)}

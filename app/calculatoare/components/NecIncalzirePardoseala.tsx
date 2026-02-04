@@ -283,6 +283,8 @@ Conform Normativ C 107-4 / EN 1264
               min="35"
               max="60"
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+              placeholder="Ex: 45"
+              title="Introduceți temperatura tur (35-60°C)"
             />
           </div>
 
@@ -295,6 +297,8 @@ Conform Normativ C 107-4 / EN 1264
               min="25"
               max="50"
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+              placeholder="Ex: 35"
+              title="Introduceți temperatura retur (25-50°C)"
             />
           </div>
 
@@ -307,6 +311,8 @@ Conform Normativ C 107-4 / EN 1264
               min="0"
               max="20"
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+              placeholder="Ex: 15" // Added placeholder
+              title="Introduceți temperatura solului (0-20°C)" // Added title
             />
           </div>
 
@@ -316,6 +322,7 @@ Conform Normativ C 107-4 / EN 1264
               value={dateGenerale.diametruTeava}
               onChange={(e) => setDateGenerale({ ...dateGenerale, diametruTeava: e.target.value as keyof typeof DIAMETRE_TEVI })}
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+              title="Selectați diametrul țevii"
             >
               {Object.entries(DIAMETRE_TEVI).map(([key, val]) => (
                 <option key={key} value={key}>{val.nume}</option>
@@ -366,6 +373,8 @@ Conform Normativ C 107-4 / EN 1264
                       value={inc.nume}
                       onChange={(e) => actualizeazaIncapere(inc.id, "nume", e.target.value)}
                       className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1.5 text-white text-sm"
+                      placeholder="Introduceți denumirea"
+                      title="Introduceți denumirea încăperii"
                     />
                   </div>
 
@@ -378,6 +387,8 @@ Conform Normativ C 107-4 / EN 1264
                       min="1"
                       step="0.5"
                       className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1.5 text-white text-sm"
+                      placeholder="Ex: 15"
+                      title="Introduceți suprafața în metri pătrați"
                     />
                   </div>
 
@@ -387,6 +398,7 @@ Conform Normativ C 107-4 / EN 1264
                       value={inc.tipPardoseala}
                       onChange={(e) => actualizeazaIncapere(inc.id, "tipPardoseala", e.target.value)}
                       className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1.5 text-white text-sm"
+                      title="Selectați diametrul țevii"
                     >
                       {Object.entries(TIPURI_PARDOSEALA).map(([key, val]) => (
                         <option key={key} value={key}>{val.nume}</option>
@@ -403,6 +415,8 @@ Conform Normativ C 107-4 / EN 1264
                       min="15"
                       max="28"
                       className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1.5 text-white text-sm"
+                      placeholder="Ex: 22"
+                      title="Introduceți temperatura interioară (15-28°C)"
                     />
                   </div>
 
@@ -417,6 +431,8 @@ Conform Normativ C 107-4 / EN 1264
                         max="2"
                         step="0.1"
                         className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1.5 text-white text-sm"
+                        placeholder="Ex: 1.0"
+                        title="Introduceți coeficientul de pierderi (0.5-2)"
                       />
                     </div>
                     <button

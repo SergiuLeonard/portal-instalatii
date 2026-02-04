@@ -162,6 +162,8 @@ Formula: Q = v × A = v × (π × d²/4)
                 max="5"
                 step="0.1"
                 className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+                placeholder="Introduceți viteza (m/s)"
+                title="Introduceți viteza în metri pe secundă"
               />
             ) : (
               <div className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-purple-400 font-bold">
@@ -194,6 +196,7 @@ Formula: Q = v × A = v × (π × d²/4)
                 value={diametru}
                 onChange={(e) => setDiametru(Number(e.target.value))}
                 className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+                title="Selectați diametrul conductei"
               >
                 {diametreStandard.map((d) => (
                   <option key={d} value={d}>DN {d}</option>
@@ -219,6 +222,8 @@ Formula: Q = v × A = v × (π × d²/4)
                 min="0.1"
                 step="0.1"
                 className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+                placeholder="Introduceți debitul (m³/h)"
+                title="Introduceți debitul în metri cubi pe oră"
               />
             ) : (
               <div className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-purple-400 font-bold">

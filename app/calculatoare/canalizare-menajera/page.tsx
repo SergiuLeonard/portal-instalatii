@@ -119,6 +119,8 @@ export default function CalculatorCanalizareMenajera() {
                     value={aparate[item.key as keyof typeof aparate]}
                     onChange={(e) => updateAparat(item.key as keyof typeof aparate, parseInt(e.target.value) || 0)}
                     className="w-16 bg-gray-900 border border-gray-700 rounded px-2 py-1 text-center text-sm"
+                    placeholder={`Enter ${item.label}`}
+                    title={`Input for ${item.label}`}
                   />
                 </div>
               ))}

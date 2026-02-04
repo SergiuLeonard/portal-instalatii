@@ -313,6 +313,7 @@ Conform STAS 6472 / Normativ C107
           <div>
             <label className="block text-sm text-gray-400 mb-1">Zona climatică</label>
             <select
+              title="Selectați zona climatică"
               value={zonaClimatica}
               onChange={(e) => setZonaClimatica(e.target.value)}
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
@@ -328,6 +329,7 @@ Conform STAS 6472 / Normativ C107
           <div>
             <label className="block text-sm text-gray-400 mb-1">Tip încăpere</label>
             <select
+              title="Selectați tipul încăperii"
               value={tipIncapere}
               onChange={(e) => setTipIncapere(e.target.value)}
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
@@ -348,6 +350,8 @@ Conform STAS 6472 / Normativ C107
               onChange={(e) => setVolum(Number(e.target.value))}
               min="1"
               step="1"
+              placeholder="Introduceți volumul"
+              title="Introduceți volumul încăperii în metri cubi"
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
             />
           </div>
@@ -361,6 +365,8 @@ Conform STAS 6472 / Normativ C107
               min="0"
               max="5"
               step="0.1"
+              placeholder="Introduceți schimburile de aer"
+              title="Introduceți numărul de schimburi de aer pe oră"
               className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
             />
             <p className="text-xs text-gray-500 mt-1">Dormitor: 0.5, Baie: 1.5, Bucătărie: 2</p>
@@ -402,6 +408,7 @@ Conform STAS 6472 / Normativ C107
               
               <div className="flex-1 min-w-[200px]">
                 <select
+                  title="Selectați tipul elementului constructiv"
                   value={el.tip}
                   onChange={(e) => actualizeazaElement(el.id, "tip", e.target.value)}
                   className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1.5 text-white text-sm"
@@ -420,6 +427,7 @@ Conform STAS 6472 / Normativ C107
 
               <div className="w-20">
                 <select
+                  title="Selectați orientarea elementului"
                   value={el.orientare}
                   onChange={(e) => actualizeazaElement(el.id, "orientare", e.target.value as Orientare)}
                   className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1.5 text-white text-sm"
@@ -438,6 +446,8 @@ Conform STAS 6472 / Normativ C107
                     onChange={(e) => actualizeazaElement(el.id, "suprafata", Number(e.target.value))}
                     min="0"
                     step="0.1"
+                    placeholder="Introduceți suprafața"
+                    title="Introduceți suprafața elementului în metri pătrați"
                     className="w-full bg-gray-700 border border-gray-600 rounded px-2 py-1.5 text-white text-sm pr-8"
                   />
                   <span className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">m²</span>

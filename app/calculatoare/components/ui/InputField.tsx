@@ -42,6 +42,8 @@ export function InputField({
           min={min}
           max={max}
           step={step}
+          placeholder={`Enter ${label.toLowerCase()}`}
+          title={label}
           className="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
         />
         {unit && (
@@ -57,6 +59,8 @@ export function InputField({
         step={step}
         value={value}
         onChange={(e) => onChange(parseFloat(e.target.value))}
+        title={`Adjust ${label.toLowerCase()}`}
+        placeholder={`Adjust ${label.toLowerCase()}`}
         className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
       />
     </div>

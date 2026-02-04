@@ -58,6 +58,7 @@ export default function CalculatorCadereTensiune() {
                 value={material}
                 onChange={(e) => setMaterial(e.target.value)}
                 className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white"
+                aria-label="Material conductor"
               >
                 <option value="cupru">Cupru (γ=56)</option>
                 <option value="aluminiu">Aluminiu (γ=35)</option>

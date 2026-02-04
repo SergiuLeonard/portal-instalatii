@@ -97,10 +97,14 @@ export default function CalculatorDimensionareConducteSanitare() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <label
+                htmlFor="material-conducta"
+                className="block text-sm font-medium text-gray-300 mb-2"
+              >
                 Material conductă
               </label>
               <select
+                id="material-conducta"
                 value={material}
                 onChange={(e) => setMaterial(e.target.value as MaterialConducta)}
                 className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white"

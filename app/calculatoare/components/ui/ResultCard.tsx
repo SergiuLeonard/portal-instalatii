@@ -3,7 +3,8 @@ interface ResultCardProps {
   label: string;
   value: string | number;
   unit?: string;
-  status?: "ok" | "warning" | "error" | "info";
+  status?: string;
+  formula?: string;
   description?: string;
   className?: string;
 }
@@ -13,6 +14,7 @@ export function ResultCard({
   value,
   unit,
   status = "info",
+  formula,
   description,
   className,
 }: ResultCardProps) {
@@ -24,20 +26,13 @@ export function ResultCard({
   };
 
   return (
-    <div className={`rounded-xl p-6 border ${statusColors[status]} space-y-3`}>
-      <h3 className="text-sm font-medium opacity-80">{label}</h3>
-      <div className="flex items-baseline gap-2">
-        <span className="text-3xl font-bold font-mono">{value}</span>
-        {unit && <span className="text-lg opacity-60">{unit}</span>}
+    <div className={`p-4 rounded-xl border ${statusColors[status as keyof typeof statusColors] || statusColors.info} ${className || ''}`}>
+      <div className="text-sm text-gray-400 mb-1">{label}</div>
+      <div className="text-2xl font-bold text-white">
+        {value} <span className="text-sm font-normal text-gray-400">{unit}</span>
       </div>
-      {className && (
-        <div className="text-xs font-mono bg-black/20 p-2 rounded border border-white/10">
-          {className}
-        </div>
-      )}
-      {description && (
-        <p className="text-sm opacity-80 leading-relaxed">{description}</p>
-      )}
+      {formula && <div className="text-xs mt-2 opacity-80 font-mono text-green-400">{formula}</div>}
+      {description && <div className="text-xs mt-1 text-gray-400">{description}</div>}
     </div>
   );
 }
