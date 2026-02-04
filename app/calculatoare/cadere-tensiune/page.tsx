@@ -124,7 +124,7 @@ export default function CalculatorCadereTensiune() {
               value={rezultate.curent}
               unit="A"
               status="info"
-              formula="I = P/(U×cosφ)"
+              className="I = P/(U×cosφ)"
             />
             
             <ResultCard

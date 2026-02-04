@@ -5,7 +5,7 @@ interface ResultCardProps {
   unit?: string;
   status?: "ok" | "warning" | "error" | "info";
   description?: string;
-  formula?: string;
+  className?: string;
 }
 
 export function ResultCard({
@@ -14,7 +14,7 @@ export function ResultCard({
   unit,
   status = "info",
   description,
-  formula,
+  className,
 }: ResultCardProps) {
   const statusColors = {
     ok: "bg-emerald-500/10 border-emerald-500/30 text-emerald-400",
@@ -30,9 +30,9 @@ export function ResultCard({
         <span className="text-3xl font-bold font-mono">{value}</span>
         {unit && <span className="text-lg opacity-60">{unit}</span>}
       </div>
-      {formula && (
+      {className && (
         <div className="text-xs font-mono bg-black/20 p-2 rounded border border-white/10">
-          {formula}
+          {className}
         </div>
       )}
       {description && (
