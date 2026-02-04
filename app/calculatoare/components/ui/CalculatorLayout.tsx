@@ -117,6 +117,7 @@ export function InputField({
         value={value}
         onChange={(e) => onChange(parseFloat(e.target.value))}
         className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
+        placeholder={`Enter ${label.toLowerCase()}`} // Added placeholder attribute
       />
     </div>
   );
