@@ -10,10 +10,17 @@ import DebitDiametru from "./components/DebitDiametru";
 import VasExpansiune from "./components/VasExpansiune";
 import NecIncalzirePardoseala from "./components/NecIncalzirePardoseala";
 import CalculHidraulic from "./components/CalculHidraulic";
+import CalculatorDebitSanitar from "./debit-sanitar/page";
+import CalculatorPierderiSarcina from "./pierderi-sarcina/page";
+import CalculatorCanal from "./canalizare-menajera/page";
+import CalculatorDebitGaze from "./debit-gaze/page";
+import CalculatorPierderiGaze from "./pierderi-gaze/page";
 
 export default function CalculatoarePage() {
   const [tabActiv, setTabActiv] = useState<
-    "apa" | "canalizare" | "meteorice" | "caldura"| "conversii" | "vasexpansiune" | "debit" | "hidraulic" | "pardoseala"
+    "apa" | "canalizare" | "meteorice" | "caldura"| "conversii" | "vasexpansiune" | "debit" | "hidraulic" | "pardoseala" | "debit-sanitar" | "pierderi-sarcina" | "canalizare-menajera"
+  | "debit-gaze" | "pierderi-gaze" | "dimensionare-gaze"
+  | "pid-tuning" | "vana-control" | "semnal-conversie"
   >("apa");
 
   const tabs = [
@@ -25,6 +32,11 @@ export default function CalculatoarePage() {
     { id: "hidraulic", label: "Calcul Hidraulic", icon: "💧" },
     { id: "vasexpansiune", label: "Vas Expansiune", icon: "🫗" },
     { id: "pardoseala", label: "Încălzire Pardoseală", icon: "🔥" },
+     { id: "debit-sanitar", label: "Debit Sanitar", icon: "💧" },
+    { id: "pierderi-sarcina", label: "Pierderi Sarcină", icon: "📉" },
+    { id: "canalizare-menajera", label: "Canal", icon: "🔄" },
+    { id: "debit-gaze", label: "Debit Gaze", icon: "🔥" },
+    { id: "pierderi-gaze", label: "Pierderi Gaze", icon: "📉" },
     { id: "debit", label: "Debit/Diametru", icon: "⚡" }
   ];
 
@@ -71,6 +83,11 @@ export default function CalculatoarePage() {
           {tabActiv === "vasexpansiune" && <VasExpansiune />}
           {tabActiv === "debit" && <CalculHidraulic />}
           {tabActiv === "pardoseala" && <NecIncalzirePardoseala/>}
+          {tabActiv === "debit-sanitar" && <CalculatorDebitSanitar />}
+          {tabActiv === "pierderi-sarcina" && <CalculatorPierderiSarcina/>}
+          {tabActiv === "canalizare-menajera" && <CalculatorCanal/>}
+          {tabActiv === "debit-gaze" && <CalculatorDebitGaze/>}
+          {tabActiv === "pierderi-gaze" && <CalculatorPierderiGaze/>}
         </div>
       </div>
     </main>
