@@ -125,7 +125,7 @@ export default function CalculatorDimensionareConducteSanitare() {
               value={rezultate.diametruTeoretic}
               unit="mm"
               status="info"
-              formula="D = √(4Q/πv)"
+              className="D = √(4Q/πv)"
             />
             
             <ResultCard
@@ -141,7 +141,7 @@ export default function CalculatorDimensionareConducteSanitare() {
               value={rezultate.vitezaReala}
               unit="m/s"
               status={rezultate.vitezaReala > 2.5 ? "error" : rezultate.vitezaReala < 0.9 ? "warning" : "ok"}
-              formula="v = 4Q/(π·D²)"
+              className="v = 4Q/(π·D²)"
               description={rezultate.vitezaReala > 2.5 ? "Viteză prea mare - risc de zgomot" : rezultate.vitezaReala < 0.5 ? "Viteză prea mică - risc de depuneri" : "Viteză optimă"}
             />
             

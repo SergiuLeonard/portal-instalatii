@@ -147,7 +147,7 @@ export default function CalculatorSarcinaRacire() {
               value={rezultate.total}
               unit="W"
               status="ok"
-              formula="ΣQtransm + Qsolar + Qint + Qvent"
+              className="ΣQtransm + Qsolar + Qint + Qvent"
               className="md:col-span-2 bg-blue-900/20 border-blue-500"
             />
           </div>

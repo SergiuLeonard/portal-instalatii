@@ -129,7 +129,7 @@ export default function CalculatorIluminat() {
               value={rezultate.numarCorpuri}
               unit="buc"
               status="ok"
-              formula="N = (E×A)/(Φ×U×MF)"
+              className="N = (E×A)/(Φ×U×MF)"
             />
             
             <ResultCard

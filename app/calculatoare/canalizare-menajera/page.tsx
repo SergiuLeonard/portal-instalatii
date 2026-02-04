@@ -174,7 +174,7 @@ export default function CalculatorCanalizareMenajera() {
               value={rezultate.debitCalcul}
               unit="l/s"
               status={rezultate.debitCalcul > rezultate.Qmax ? "error" : "ok"}
-              formula={`q = 0.6 × √${rezultate.totalUS}`}
+              className={`q = 0.6 × √${rezultate.totalUS}`}
               description="Debit probabil maxim conform STAS 1846"
             />
 
@@ -183,7 +183,7 @@ export default function CalculatorCanalizareMenajera() {
               value={rezultate.Qmax}
               unit="l/s"
               status={rezultate.Qmax > rezultate.debitCalcul ? "ok" : "error"}
-              formula={`Qmax = A × v (${rezultate.viteza} m/s)`}
+              className={`Qmax = A × v (${rezultate.viteza} m/s)`}
               description="Capacitate maximă la grad de umplere 100%"
             />
 

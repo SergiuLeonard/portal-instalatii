@@ -199,7 +199,7 @@ export default function CalculatorPierderiSarcina() {
               value={rezultate.viteza}
               unit="m/s"
               status={getStatusViteza(rezultate.viteza)}
-              formula="v = 4Q/(π·D²)"
+              className="v = 4Q/(π·D²)"
               description={rezultate.viteza > 3 ? "Viteza prea mare, risc de zgomot și eroziune" : rezultate.viteza < 0.5 ? "Viteza prea mică, risc de depuneri" : "Viteză optimă"}
             />
 
@@ -208,7 +208,7 @@ export default function CalculatorPierderiSarcina() {
               value={rezultate.hf}
               unit="mCA"
               status={rezultate.hf > 50 ? "error" : rezultate.hf > 20 ? "warning" : "ok"}
-              formula={metoda === "darcy" ? "hf = λ·(L/D)·(v²/2g)" : "hf = 10.67·L·Q^1.852/(C^1.852·D^4.87)"}
+              className={metoda === "darcy" ? "hf = λ·(L/D)·(v²/2g)" : "hf = 10.67·L·Q^1.852/(C^1.852·D^4.87)"}
               description="Înălțime coloană de apă echivalentă"
             />
 
@@ -217,7 +217,7 @@ export default function CalculatorPierderiSarcina() {
               value={rezultate.presiuneBar}
               unit="bar"
               status="info"
-              formula={`Δp = ${rezultate.hf} × ρ × g`}
+              className={`Δp = ${rezultate.hf} × ρ × g`}
             />
 
             {metoda === "darcy" && (

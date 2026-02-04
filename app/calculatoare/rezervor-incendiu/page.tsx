@@ -97,7 +97,7 @@ export default function CalculatorRezervorIncendiu() {
               value={rezultate.debitStingere}
               unit="l/min"
               status="ok"
-              formula="Q = q × S"
+              className="Q = q × S"
               description="Debit total pentru sprinklere/hidranti"
             />
             
@@ -106,7 +106,7 @@ export default function CalculatorRezervorIncendiu() {
               value={rezultate.volumNecesar}
               unit="m³"
               status="ok"
-              formula="V = Q × t / 1000"
+              className="V = Q × t / 1000"
               description="Volum apă necesar"
             />
             

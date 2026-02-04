@@ -125,7 +125,7 @@ export default function CalculatorConducteFrig() {
               value={rezultate.pierdereCalorica}
               unit="W/m"
               status={rezultate.pierdereCalorica < 10 ? "ok" : "warning"}
-              formula="q = 2πλΔt/ln(De/Di)"
+              className="q = 2πλΔt/ln(De/Di)"
               description="Pierdere pe metru liniar"
             />
             

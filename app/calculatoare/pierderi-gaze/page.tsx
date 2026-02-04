@@ -137,7 +137,7 @@ export default function CalculatorPierderiGaze() {
               value={rezultate.deltaP}
               unit="mbar"
               status={rezultate.procentPierdere > 20 ? "error" : rezultate.procentPierdere > 10 ? "warning" : "ok"}
-              formula={`ΔP = 23.9×10⁻³ × ${lungime} × ${debit}^1.82 / ${diametru}^4.82`}
+              className={`ΔP = 23.9×10⁻³ × ${lungime} × ${debit}^1.82 / ${diametru}^4.82`}
               description={`${rezultate.procentPierdere}% din presiunea inițială`}
             />
 

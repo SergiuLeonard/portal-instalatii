@@ -203,7 +203,7 @@ export default function CalculatorDebitGaze() {
               value={rezultate.putereCalcul}
               unit="kW"
               status="ok"
-              formula={`Pcalc = ${rezultate.putereTotalaInstalata} × ${simultanitate}`}
+              className={`Pcalc = ${rezultate.putereTotalaInstalata} × ${simultanitate}`}
               description="Putere considerată pentru dimensionare (simultanitate)"
             />
 
@@ -213,7 +213,7 @@ export default function CalculatorDebitGaze() {
                 value={rezultate.debitGaz}
                 unit="m³/h"
                 status={rezultate.debitGaz > 10 ? "warning" : "ok"}
-                formula={`Q = ${rezultate.putereCalcul} / 10`}
+                className={`Q = ${rezultate.putereCalcul} / 10`}
                 description="Debit volumic gaz natural"
               />
               <ResultCard
@@ -229,7 +229,7 @@ export default function CalculatorDebitGaze() {
               value={rezultate.debitAer}
               unit="m³/h"
               status="info"
-              formula="Vaer ≈ 10 × Vgaz"
+              className="Vaer ≈ 10 × Vgaz"
               description="Aer teoretic necesar pentru ardere (λ=1)"
             />
           </div>

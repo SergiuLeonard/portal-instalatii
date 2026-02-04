@@ -104,7 +104,7 @@ export default function CalculatorSprinklere() {
               value={rezultate.debitPerSprinkler}
               unit="l/min"
               status="ok"
-              formula="Q = K × √P"
+              className="Q = K × √P"
               description={`${rezultate.debitPerSprinklerLs} l/s`}
             />
             

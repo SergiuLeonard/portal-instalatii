@@ -109,7 +109,7 @@ export default function CalculatorDimensionareGaze() {
               value={rezultate.diametruTeoretic}
               unit="mm"
               status="info"
-              formula="D = [23.9·10⁻³·L·Q¹·⁸²/ΔP]^(1/4.82)"
+              className="D = [23.9·10⁻³·L·Q¹·⁸²/ΔP]^(1/4.82)"
             />
             
             <ResultCard

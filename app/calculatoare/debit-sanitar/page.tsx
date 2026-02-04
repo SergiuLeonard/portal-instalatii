@@ -160,7 +160,7 @@ export default function CalculatorDebitSanitar() {
                 value={rezultate.qc}
                 unit="l/s"
                 status={getStatus(rezultate.qc)}
-                formula={`qc = ${numarSanitare} × ${debitSpecific} × ${rezultate.simultaneitate}`}
+                className={`qc = ${numarSanitare} × ${debitSpecific} × ${rezultate.simultaneitate}`}
                 description="Debitul maxim probabil simultan pentru dimensionarea rețelei"
               />
 
@@ -169,7 +169,7 @@ export default function CalculatorDebitSanitar() {
                 value={rezultate.Qzi}
                 unit="m³/zi"
                 status="info"
-                formula={`Qzi = ${numarPersoane} × ${rezultate.E} / 1000`}
+                className={`Qzi = ${numarPersoane} × ${rezultate.E} / 1000`}
                 description="Consumul zilnic total de apă pentru rezervor/deducție"
               />
 

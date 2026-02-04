@@ -151,7 +151,7 @@ export default function CalculatorPutereInstalata() {
                 value={rezultate.putereCalcul}
                 unit="W"
                 status="ok"
-                formula="Pc = Ks × ΣPi"
+                className="Pc = Ks × ΣPi"
                 description="Putere pentru dimensionare"
               />
               
