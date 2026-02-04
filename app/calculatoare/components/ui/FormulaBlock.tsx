@@ -1,4 +1,10 @@
 // /app/calculatoare/components/ui/FormulaBlock.tsx
+interface Variable {
+  symbol: string;
+  description: string;
+  unit: string;
+}
+
 interface FormulaBlockProps {
   title: string;
   formula: string;
