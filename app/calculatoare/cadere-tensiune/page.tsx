@@ -8,28 +8,27 @@ import { FormulaBlock } from "../components/ui/FormulaBlock";
 import { AlertCircle } from "lucide-react";
 
 export default function CalculatorCadereTensiune() {
-  const [putere, setPutere] = useState<number>(5000); // W
-  const [tensiune, setTensiune] = useState<number>(230); // V (230V monofazat sau 400V trifazat)
-  const [lungime, setLungime] = useState<number>(50); // m
-  const [sectiune, setSectiune] = useState<number>(2.5); // mm²
+  const [putere, setPutere] = useState<number>(5000);
+  const [tensiune, setTensiune] = useState<number>(230);
+  const [lungime, setLungime] = useState<number>(50);
+  const [sectiune, setSectiune] = useState<number>(2.5);
   const [cosFi, setCosFi] = useState<number>(0.9);
   const [material, setMaterial] = useState<string>("cupru");
 
   const rezultate = useMemo(() => {
-    const gamma = material === "cupru" ? 56 : 35; // conductivitate specifică (m/Ω·mm²)
-    const I = putere / (tensiune * cosFi); // A curent (simplificat monofazat)
+    const gamma = material === "cupru" ? 56 : 35;
+    const I = putere / (tensiune * cosFi);
     
-    // ΔU% = (2 × I × L × cosφ) / (γ × S × Un) × 100 (pentru monofazat)
-    // Pentru trifazat: √3 în loc de 2
     const coeficient = tensiune === 230 ? 2 : Math.sqrt(3);
     const deltaU = (coeficient * I * lungime * cosFi) / (gamma * sectiune * tensiune) * 100;
     
-    // Pierderi putere
     const rezistenta = lungime / (gamma * sectiune);
-    const pierderiPutere = 2 * Math.pow(I, 2) * rezistenta; // W (simplificat)
+    const pierderiPutere = 2 * Math.pow(I, 2) * rezistenta;
     
-    // Secțiune minimă conform NP 022 (max 3% cădere)
     const Smin = (coeficient * I * lungime * cosFi) / (gamma * 3 * tensiune) * 100;
+    
+    // FIX: Type assertion pentru status
+    const statusValue: "ok" | "warning" | "error" = deltaU < 3 ? "ok" : deltaU < 5 ? "warning" : "error";
     
     return {
       curent: Math.round(I * 10) / 10,
@@ -37,7 +36,7 @@ export default function CalculatorCadereTensiune() {
       pierderiPutere: Math.round(pierderiPutere),
       sectiuneMinima: Math.round(Smin * 10) / 10,
       tensiuneFinala: Math.round(tensiune * (1 - deltaU/100) * 10) / 10,
-      status: deltaU < 3 ? "ok" : deltaU < 5 ? "warning" : "error",
+      status: statusValue, // Acum este tipizat corect
     };
   }, [putere, tensiune, lungime, sectiune, cosFi, material]);
 
@@ -141,7 +140,7 @@ export default function CalculatorCadereTensiune() {
               label="Tensiune finală"
               value={rezultate.tensiuneFinala}
               unit="V"
-              status={rezultate.status}
+              status={rezultate.status === "error" ? "error" : rezultate.status === "warning" ? "warning" : "ok"}
             />
             
             <ResultCard
