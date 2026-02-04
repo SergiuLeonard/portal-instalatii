@@ -200,7 +200,7 @@ export default function CalculatorCanalizareMenajera() {
               value={rezultate.adancime}
               unit="mm"
               status={rezultate.hD > 20 && rezultate.hD < 80 ? "ok" : "warning"}
-              formula={`h/D = ${rezultate.hD}%`}
+              className={`h/D = ${rezultate.hD}%`}
               description="Raport adâncime/diametru la debit de calcul"
             />
           </div>
