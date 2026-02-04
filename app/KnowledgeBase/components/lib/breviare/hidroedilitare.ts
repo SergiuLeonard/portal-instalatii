@@ -8,7 +8,7 @@ export const breviareHidroedilitare: Breviar[] = [
     nivel: "mediu",
     sursa: "SR 1343-1 / NP 133 / STAS 1343",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/debit-apa-comunitara",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Calculul debitelor de apă pentru localități (aducțiuni și rețele distribuție), considerând consumul specific zilnic, coeficienții de variație și debitul maxim orar.",
@@ -102,7 +102,7 @@ Qorar = (1800 × 1.6) / 24 = 120 m³/h = 33.3 l/s
     nivel: "avansat",
     sursa: "Mecanica fluidelor / Proiectarea rețelelor de apă",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/lovitura-berbec",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Calculul presiunii maxime generate de lovitura de berbec (transient hidraulic) la închiderea bruscă a vanelor în aducțiuni și rețele de apă, și dimensionarea camerelor de aer sau supapelor de evacuare.",

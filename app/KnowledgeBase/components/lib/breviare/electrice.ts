@@ -10,7 +10,7 @@ export const breviareElectrice: Breviar[] = [
     nivel: "initiator",
     sursa: "Normativul I7 / SR HD 60364",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/putere-instalata",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Determinarea puterii calculate pentru dimensionarea tablourilor electrice, conductoarelor și protecțiilor, folosind coeficienții de utilizare și simultaneitate.",
@@ -113,7 +113,7 @@ portal-instalatii.vercel.app
     nivel: "mediu",
     sursa: "Normativul I7 / SR HD 60364-5-52",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/cadere-tensiune",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Verificarea secțiunii conductoarelor pentru limitarea căderii de tensiune, asigurând funcționarea corectă a receptoarelor și eficiență energetică.",
@@ -211,7 +211,7 @@ Pentru distanțe mai mari: măriți secțiunea sau scădeți curentul.
     nivel: "mediu",
     sursa: "SR EN 12464-1 / NP 061-02",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/iluminat",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Dimensionarea instalației de iluminat prin calculul fluxului luminos necesar pentru atingerea nivelului de iluminare cerut de normativ, în funcție de destinația încăperii.",
@@ -311,7 +311,7 @@ Putere: 7 × 36W = 252W (12.6 W/m²)
     nivel: "mediu",
     sursa: "Normativul I7 / SR HD 60364-4-43",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/protectii-electrice",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Dimensionarea siguranțelor fuzibile și automatelor pentru protecția conductoarelor împotriva suprasarcinilor și scurtcircuitelor.",

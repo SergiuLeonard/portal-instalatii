@@ -10,7 +10,7 @@ export const breviareGaze: Breviar[] = [
     nivel: "initiator",
     sursa: "Normativul I5 / SR EN 1775",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/debit-gaze",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Determinarea debitului de gaze naturale necesar pentru alimentarea aparatelor de consum (centrale, boilere, aragazuri, etc.), considerând simultaneitatea și puterea calorifică.",
@@ -110,7 +110,7 @@ ALES: Contor G6 sau G10
     nivel: "mediu",
     sursa: "Normativul I5 / SR EN 1775",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/pierderi-gaze",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Verificarea secțiunii conductelor de gaze pentru asigurarea presiunii minime la aparate (≥17 mbar pentru joasă presiune), calculând pierderile de presiune în rețea.",
@@ -322,7 +322,7 @@ Rezultat: 2 grilaje 10×10cm
     nivel: "mediu",
     sursa: "Normativul I5 / SR EN 1775",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/dimensionare-gaze",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Determinarea diametrului necesar al conductelor de gaze pentru a asigura debitul maxim cu pierderi de presiune admisibile, folosind formula Renouard simplificată.",
@@ -520,7 +520,7 @@ Aparate de ardere:           anual (de utilizator)
     nivel: "mediu",
     sursa: "Normativul I5 / C 92/2003 / SR EN 13384",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/dimensionare-cos",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Dimensionarea coșurilor de fum pentru evacuarea sigură a produselor de ardere, asigurarea tirajului natural și prevenirea condensului.",

@@ -8,7 +8,7 @@ export const breviareFrigorifice: Breviar[] = [
     nivel: "mediu",
     sursa: "Termodinamică / Instalații frigorifice / EN 378",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/ciclu-frigorific",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Analiza ciclului frigorific de compresie cu agent refrigerant și calculul coeficientului de performanță (COP) pentru evaluarea eficienței instalațiilor de refrigerare.",
@@ -105,7 +105,7 @@ COP = (410-250)/(435-410) = 160/25 = 6.4 (ideal, fără pierderi)
     nivel: "avansat",
     sursa: "EN 378 / ASHRAE / Good practice frigorific",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/conducte-frig",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Calculul dimensiunilor conductelor de agent frigorific (cupru) pentru lichid și sucțiune, pierderile de presiune admisibile și grosimea izolației termice pentru prevenirea condensului.",

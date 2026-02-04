@@ -8,7 +8,7 @@ export const breviareCladiriSpeciale: Breviar[] = [
     nivel: "avansat",
     sursa: "SR EN 13795 / HTM 03-01 / NP 060-2016",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/spitale-aer",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Calculul debitelor de aer și presiunilor relative pentru diferite departamente din spitale (săli operație, ATI, izolare) pentru prevenirea infecțiilor și controlul contaminării.",

@@ -8,7 +8,7 @@ export const breviareRacireVentilatie: Breviar[] = [
     nivel: "mediu",
     sursa: "SR EN 15255 / ASHRAE Fundamentals / NP 060-2016",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/sarcina-racire",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Calculul sarcinii termice de răcire pentru dimensionarea sistemelor de climatizare (split, VRF, chiller), considerând câștigurile de căldură prin transmisie, solar, ventilație și interne.",
@@ -113,7 +113,7 @@ Total:          120 W/m² × 100m² = 12 kW
     nivel: "mediu",
     sursa: "SR EN 13779 / C 107/2005 / NP 060",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/ventilatie-debit",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Calculul debitului necesar de aer proaspăt pentru comfort și evacuare fum/foc, precum și pierderile de presiune în rețelele de ventilație pentru dimensionarea ventilatoarelor.",

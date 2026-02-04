@@ -8,7 +8,7 @@ export const breviareEficientaEnergetica: Breviar[] = [
     nivel: "mediu",
     sursa: "Directivei EPBD / SR EN ISO 52000 / Legea 372/2005",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/bilant-energetic",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Calculul consumului specific de energie primară și finală pentru clădiri (kWh/m²/an), determinarea clasei energetice și identificarea măsurilor de eficiență.",
@@ -105,7 +105,7 @@ nZEB (Nearly Zero Energy):
     nivel: "mediu",
     sursa: "Eficiență energetică în instalații / SR EN 15316",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/randament-instalatii",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Calculul randamentului global al instalațiilor termice (încălzire, apă caldă) prin înlănțuirea randamentelor componente (generator, distribuție, emisie, reglare).",

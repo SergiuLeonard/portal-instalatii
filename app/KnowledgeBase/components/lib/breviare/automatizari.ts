@@ -10,7 +10,7 @@ export const breviareAutomatizari: Breviar[] = [
     nivel: "mediu",
     sursa: "Automatizări industriale / Experiență practică",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/pid-tuning",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Acordarea regulatorului PID pentru controlul temperaturii, presiunii sau debitului în instalații HVAC, determinarea parametrilor Kp, Ti, Td pentru răspuns optim (fără suprareglaj excesiv sau oscilații).",
@@ -120,7 +120,7 @@ Ajustare conservatoare: Kp=1.2, Ti=5min, Td=0.8min
     nivel: "initiator",
     sursa: "Automatizări HVAC / Producători (Belimo, Siemens, Danfoss)",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/vana-control",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Selecția și dimensionarea vanelor de reglare cu servomotor pentru circuitele de încălzire/răcire, determinarea caracteristicii optime (liniară vs logaritmică) și calculul autorității vanei.",
@@ -331,7 +331,7 @@ Eroare totală: 0.35°C (senzor) + 0.1% din domeniu (transmițător)
     nivel: "mediu",
     sursa: "Metrologie fluidelor / ISO 5167 / SR EN 1434",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/debitmetru-selectie",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Calculul debitului măsurat prin diferite metode (diferență de presiune, turbine, electromagnetice, ultrasunete) și determinarea incertitudinii de măsură pentru fiecare principiu.",
@@ -448,7 +448,7 @@ Venturi β=0.6: Δp ≈ 10 mbar
     nivel: "initiator",
     sursa: "Automatizări industriale / IEC 60529 / IEC 61131",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/semnal-conversie",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Conversia între semnalele analogice standard (4-20mA și 0-10V) și valorile proces, calculul rezistențelor de sarcină și al erorilor de transmisie în buclele de curent.",

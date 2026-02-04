@@ -8,7 +8,7 @@ export const breviareFundamente: Breviar[] = [
     nivel: "initiator",
     sursa: "SI / Unități tehnice / STAS",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/conversii-unitati",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Conversii rapide între unitățile de măsură utilizate frecvent în proiectarea și execuția instalațiilor (presiune, debit, putere, temperatură), inclusiv unități ne-SI tradiționale.",
@@ -114,7 +114,7 @@ ENERGIE
     nivel: "initiator",
     sursa: "Termodinamică / Fizică construcții / Tabele fizico-chimice",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/proprietati-fluid",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Valorile de referință pentru densitatea, viscozitatea, căldura specifică și conductivitatea termică a apei și aerului în condițiile uzuale de funcționare a instalațiilor (temperaturi 0-100°C).",

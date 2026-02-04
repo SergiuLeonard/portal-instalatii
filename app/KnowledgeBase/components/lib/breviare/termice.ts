@@ -10,7 +10,7 @@ export const breviareTermice: Breviar[] = [
     nivel: "initiator",
     sursa: "STAS 1907/1",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/necesar-caldura",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Determinarea cantității de căldură necesară pentru menținerea temperaturii interioare confortabile într-o încăpere, în regim staționar de iarnă.",
@@ -115,7 +115,7 @@ Q = 450 + 193 = 643 W ≈ 650 W
 Verificare: 650/12 = 54 W/m² ∈ [50,80] ✓
 
 ================================================================================
-portal-instalatii.vercel.app | calculator: /calculatoare/necesar-caldura
+portal-instalatii.vercel.app | calculator: /calculatoare
 ================================================================================`
   },
   
@@ -126,7 +126,7 @@ portal-instalatii.vercel.app | calculator: /calculatoare/necesar-caldura
     nivel: "initiator",
     sursa: "STAS 1907/1 / C107",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/rezistenta-termica",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Calculul rezistenței termice specifice a elementelor de construcție (pereți, acoperiș, podea) pentru evaluarea pierderilor de căldură.",
@@ -309,7 +309,7 @@ Pentru ACM se folosește coeficientul de simultaneitate sanitar (STAS 1478).
     nivel: "mediu",
     sursa: "SR EN 1264 / C 107/5",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/pardoseala-caldura",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Calculul sarcinii termice specifice și a temperaturilor de funcționare pentru instalații de încălzire în pardoseală cu apă.",
@@ -403,7 +403,7 @@ Lungime maxim circuit: 80-120m (incl. distribuție)
     nivel: "mediu",
     sursa: "SR EN 12831 / C 107/5",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/centrala-termica",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Dimensionarea centralei termice (putere termică, debit) și a instalațiilor auxiliare (coș de fum, vas de expansiune).",
@@ -505,7 +505,7 @@ G = 25000 / (1.16 × 25) = 862 l/h
     nivel: "mediu",
     sursa: "STAS 1795 / SR EN 12828",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/vas-expansiune",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Dimensionarea vasului de expansiune pentru compensarea dilatării apei în instalația de încălzire, prevenind suprapresiunile și golurile de aer.",

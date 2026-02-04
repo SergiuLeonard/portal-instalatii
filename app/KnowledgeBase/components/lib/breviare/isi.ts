@@ -10,7 +10,7 @@ export const breviareISI: Breviar[] = [
     nivel: "mediu",
     sursa: "NP 086-05 / SR EN 671-1",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/hidranti-interiori",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Dimensionarea instalației de hidranți interiori pentru stingerea incendiilor, asigurând debitul și presiunea minimă la cel mai defavorabil hidrant.",
@@ -116,7 +116,7 @@ Ales: 25 m³
     nivel: "avansat",
     sursa: "NP 086-05 / SR EN 12845",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/sprinklere",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Dimensionarea sistemului automat de stingere cu sprinklere, determinând numărul de capete, debitul și presiunea necesare în funcție de pericolul de incendiu.",
@@ -226,7 +226,7 @@ Grup pompare: electric + diesel (backup) sau electric + electric
     nivel: "mediu",
     sursa: "NP 086-05 / SR EN 12845",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/rezervor-incendiu",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Calculul volumului rezervorului de apă pentru incendiu, asigurând autonomia necesară pompelor de stingere până la intervenția pompierilor.",

@@ -8,7 +8,7 @@ export const breviareManagementResurse: Breviar[] = [
     nivel: "initiator",
     sursa: "Management proiect / Devizieră instalații / Experiență piață",
     areCalculator: true,
-    calculatorUrl: "/calculatoare/estimare-costuri",
+    calculatorUrl: "/calculatoare",
     
     continut: {
       scop: "Metode rapide de estimare a costurilor pentru instalații sanitare, termice și electrice în construcții, folosind indicatori specifici pe m² sau pe element de instalare.",
