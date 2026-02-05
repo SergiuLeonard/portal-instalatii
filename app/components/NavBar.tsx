@@ -8,18 +8,15 @@ const navItems = [
   { href: "/", label: "Acasă" },
   { href: "/normative", label: "Normative" },
   { href: "/KnowledgeBase", label: "Ghiduri de proiectare" },
-  { href: "/calculatoare", label: "Calculatoare" },
-  { href: "/europene", label: "Proiecte Europene" }, // Dacă ai adăugat pagina asta anterior
+  { href: "/calculatoare", label: "Calculatoare" },  
 ];
 
-// Link către Chat Portal
-const CHAT_URL = "https://ephemchat-2.preview.emergentagent.com";
+// Link către Portalul Construcții (modifică URL-ul după caz)
+const PORTAL_URL = "https://portal-constructii.vercel.app"; 
+//Sau dacă rulezi local: "http://localhost:3001"
 
 export default function NavBar() {
   const pathname = usePathname();
-
-  // Eliminat condiția de ascundere pe /profil ca să vezi nav și pe pagina de CV
-  // (dacă vrei să rămână fără nav pe /profil, păstrează: if (pathname.startsWith("/profil")) return null;)
 
   return (
     <header className="no-print bg-gray-900 border-b border-gray-700 sticky top-0 z-50">
@@ -57,14 +54,15 @@ export default function NavBar() {
               );
             })}
             
-            {/* Chat Button - Desktop */}
+            {/* Portal Construcții Button - Desktop */}
             <a
-              href={CHAT_URL}
+              href={PORTAL_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-cyan-600 text-white hover:bg-cyan-500 transition-all duration-200 shadow-lg shadow-cyan-600/20"
-              title="Chat rapid pentru instalatori"
+              className="ml-2 flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-amber-600 text-white hover:bg-amber-500 transition-all duration-200 shadow-lg shadow-amber-600/20"
+              title="Accesează Portalul Construcții"
             >
+              {/* Icon clădire/construcție */}
               <svg 
                 className="w-4 h-4" 
                 fill="none" 
@@ -75,22 +73,22 @@ export default function NavBar() {
                   strokeLinecap="round" 
                   strokeLinejoin="round" 
                   strokeWidth={2} 
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" 
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" 
                 />
               </svg>
-              <span>Chat</span>
+              <span>Portal Construcții</span>
             </a>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
-            {/* Chat Button - Mobile (icon only) */}
+            {/* Portal Button - Mobile (icon only) */}
             <a
-              href={CHAT_URL}
+              href={PORTAL_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-cyan-600 text-white hover:bg-cyan-500 transition-colors"
-              title="Chat rapid"
+              className="p-2 rounded-lg bg-amber-600 text-white hover:bg-amber-500 transition-colors"
+              title="Portal Construcții"
             >
               <svg 
                 className="w-5 h-5" 
@@ -102,12 +100,12 @@ export default function NavBar() {
                   strokeLinecap="round" 
                   strokeLinejoin="round" 
                   strokeWidth={2} 
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" 
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" 
                 />
               </svg>
             </a>
             
-            <MobileMenu pathname={pathname} navItems={navItems} />
+            <MobileMenu pathname={pathname} navItems={navItems} portalUrl={PORTAL_URL} />
           </div>
         </div>
       </nav>
@@ -115,8 +113,12 @@ export default function NavBar() {
   );
 }
 
-// MobileMenu trebuie să primească navItems ca prop sau să-l redefinească interior
-function MobileMenu({ pathname, navItems }: { pathname: string; navItems: {href: string; label: string}[] }) {
+// MobileMenu component - actualizat cu Portal Construcții
+function MobileMenu({ pathname, navItems, portalUrl }: { 
+  pathname: string; 
+  navItems: {href: string; label: string}[];
+  portalUrl: string;
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -175,13 +177,13 @@ function MobileMenu({ pathname, navItems }: { pathname: string; navItems: {href:
               {/* Separator */}
               <div className="border-t border-gray-700 my-2" />
               
-              {/* Chat Link in Mobile Menu */}
+              {/* Portal Construcții Link in Mobile Menu */}
               <a
-                href={CHAT_URL}
+                href={portalUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 text-sm text-cyan-400 hover:bg-gray-700 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 text-sm text-amber-400 hover:bg-gray-700 transition-colors"
               >
                 <svg 
                   className="w-5 h-5" 
@@ -193,10 +195,10 @@ function MobileMenu({ pathname, navItems }: { pathname: string; navItems: {href:
                     strokeLinecap="round" 
                     strokeLinejoin="round" 
                     strokeWidth={2} 
-                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" 
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" 
                   />
                 </svg>
-                <span>Chat Rapid</span>
+                <span>Portal Construcții</span>
                 <svg 
                   className="w-4 h-4 ml-auto" 
                   fill="none" 
