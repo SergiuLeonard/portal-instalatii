@@ -597,13 +597,19 @@ export default function NormativePage() {
 
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white">
-      {/* Header */}
-      <div className="border-b border-gray-800 bg-gradient-to-r from-gray-900 to-black">
-        <div className="max-w-6xl mx-auto px-4 py-8">
-          <h1 className="text-3xl font-bold text-white mb-2">
-            Normative, Legislație și Reglementări
-          </h1>
-          <p className="text-gray-400">
+            {/* Header cu Gradient */}
+      <div className="relative overflow-hidden border-b border-gray-800">
+        {/* Background gradient cald */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-gray-900 to-cyan-900/40" />
+        
+        <div className="relative max-w-6xl mx-auto px-4 py-12">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="text-4xl">📚</span>
+            <h1 className="text-3xl md:text-4xl font-bold text-white">
+              Normative, Legislație și Reglementări
+            </h1>
+          </div>
+          <p className="text-blue-200/80 text-lg max-w-2xl">
             Colecție completă de normative tehnice pentru instalații în construcții
           </p>
         </div>

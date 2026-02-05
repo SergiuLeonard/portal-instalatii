@@ -8,6 +8,7 @@ const navItems = [
   { href: "/", label: "Acasă" },
   { href: "/normative", label: "Normative" },
   { href: "/KnowledgeBase", label: "Ghiduri de proiectare" },
+  { href: "/europene", label: "Proiecte Europene" },
   { href: "/calculatoare", label: "Calculatoare" },  
 ];
 
@@ -19,9 +20,17 @@ export default function NavBar() {
   const pathname = usePathname();
 
   return (
-    <header className="no-print bg-gray-900 border-b border-gray-700 sticky top-0 z-50">
-      <nav className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+    <header className="no-print relative overflow-hidden border-b border-gray-700/50 sticky top-0 z-50">
+            {/* Gradient Background cu Glow */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-gray-900 to-purple-900/90" />
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-transparent to-purple-600/10" />
+            
+            {/* Glow effect în partea de sus */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent" />
+            <div className="absolute -bottom-10 left-1/4 w-1/2 h-20 bg-blue-500/20 blur-3xl rounded-full" />
+
+            <nav className="relative z-10 max-w-7xl mx-auto px-4 backdrop-blur-sm">
+            <div className="flex items-center justify-between h-16">
           {/* Logo / Brand */}
           <Link 
             href="/" 
@@ -41,27 +50,27 @@ export default function NavBar() {
               
               return (
                 <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    isActive
-                      ? "bg-blue-600 text-white"
-                      : "text-gray-300 hover:bg-gray-800 hover:text-white"
-                  }`}
-                >
-                  {item.label}
-                </Link>
+                    key={item.href}
+                    href={item.href}
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                      isActive
+                        ? "bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white shadow-[0_0_15px_rgba(59,130,246,0.5)] border border-blue-400/50"
+                        : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
               );
             })}
             
             {/* Portal Construcții Button - Desktop */}
             <a
-              href={PORTAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-2 flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-amber-600 text-white hover:bg-amber-500 transition-all duration-200 shadow-lg shadow-amber-600/20"
-              title="Accesează Portalul Construcții"
-            >
+                href={PORTAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-amber-600 via-orange-600 to-orange-500 text-white hover:from-amber-500 hover:via-orange-500 hover:to-orange-400 transition-all duration-200 shadow-[0_0_20px_rgba(245,158,11,0.4)] border border-orange-400/50"
+                title="Accesează Portalul Construcții"
+              >
               {/* Icon clădire/construcție */}
               <svg 
                 className="w-4 h-4" 
@@ -87,7 +96,7 @@ export default function NavBar() {
               href={PORTAL_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-amber-600 text-white hover:bg-amber-500 transition-colors"
+              className="p-2 rounded-lg bg-gradient-to-r from-amber-600 to-orange-600 text-white hover:from-amber-500 hover:to-orange-500 transition-all duration-200 shadow-[0_0_10px_rgba(245,158,11,0.3)] border border-orange-400/30"
               title="Portal Construcții"
             >
               <svg 
@@ -165,7 +174,7 @@ function MobileMenu({ pathname, navItems, portalUrl }: {
                     onClick={() => setIsOpen(false)}
                     className={`block px-4 py-3 text-sm transition-colors ${
                       isActive
-                        ? "bg-blue-600 text-white"
+                        ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-[0_0_10px_rgba(59,130,246,0.4)] border-l-4 border-blue-400"
                         : "text-gray-300 hover:bg-gray-700 hover:text-white"
                     }`}
                   >

@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "...",
+  title: "Instalatii",
   description: "Portal profesional pentru inginerie instalații",
   manifest: '/manifest.json',
 };

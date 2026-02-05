@@ -152,52 +152,99 @@ export default function KnowledgeBasePage() {
 
   return (
     <main className="min-h-screen bg-gray-900">
-      {/* Header cu tab-uri */}
-      <div className="bg-gray-800 border-b border-gray-700">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between py-4">
+            {/* Header cu Gradient */}
+      <div className="relative overflow-hidden border-b border-gray-800">
+        {/* Background gradient - Green/Teal pentru Ghiduri */}
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/80 via-gray-900 to-teal-900/40" />
+        
+        <div className="relative max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-between py-6">
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-white">
-                KnowledgeBase
+              <h1 className="text-2xl md:text-4xl font-bold text-white mb-2">
+                Ghiduri de Proiectare
               </h1>
-              <p className="text-gray-400 mt-1 text-sm">
-                Ghiduri de proiectare și breviare de calcul pentru instalații
+              <p className="text-emerald-200/80 text-lg">
+                Documentație tehnică și breviare de calcul pentru instalații
               </p>
             </div>
           </div>
           
-          {/* Tab-uri */}
-          <div className="flex gap-1 border-b border-gray-700">
-            <button
-              onClick={() => {
-                setActiveTab('ghiduri');
-                setActiveGhid(null);
-              }}
-              className={`px-6 py-3 font-medium text-sm transition-colors relative ${
-                activeTab === 'ghiduri'
-                  ? 'text-blue-400 border-b-2 border-blue-400'
-                  : 'text-gray-400 hover:text-white'
-              }`}
-            >
-              📚 Ghiduri de Proiectare
-            </button>
-            <button
-              onClick={() => {
-                setActiveTab('breviare');
-                setActiveGhid(null);
-              }}
-              className={`px-6 py-3 font-medium text-sm transition-colors relative ${
-                activeTab === 'breviare'
-                  ? 'text-green-400 border-b-2 border-green-400'
-                  : 'text-gray-400 hover:text-white'
-              }`}
-            >
-              📋 Breviare de Calcul
-            </button>
-          </div>
+                 {/* TAB-URI CARD (Mari și Vizibile) */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-8 max-w-4xl mx-auto">
+          {/* Card Ghiduri */}
+          <button
+            onClick={() => {
+              setActiveTab('ghiduri');
+              setActiveGhid(null);
+            }}
+            className={`group relative flex-1 p-6 rounded-2xl border-2 transition-all duration-300 flex items-center gap-4 ${
+              activeTab === 'ghiduri'
+                ? // STARE ACTIVĂ - Gradient Emerald cu Glow
+                  'bg-gradient-to-br from-emerald-500 via-teal-500 to-teal-600 text-white border-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.4)] transform scale-[1.02]'
+                : // STARE INACTIVĂ - Gri recesat
+                  'bg-gray-800/40 text-gray-400 border-gray-700 hover:bg-gray-800/60 hover:border-gray-600 hover:text-gray-200'
+            }`}
+          >
+            {/* Icon Mare */}
+            <span className="text-4xl filter drop-shadow-md">
+              {activeTab === 'ghiduri' ? '📖' : '📚'}
+            </span>
+            
+            {/* Text */}
+            <div className="text-left">
+              <h3 className="font-bold text-xl mb-1">Ghiduri de Proiectare</h3>
+              <p className={`text-sm ${activeTab === 'ghiduri' ? 'text-emerald-100' : 'text-gray-500'}`}>
+                Documentație tehnică completă
+              </p>
+            </div>
+
+            {/* Indicator Activ (punct luminos) */}
+            {activeTab === 'ghiduri' && (
+              <span className="absolute top-4 right-4 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-200"></span>
+              </span>
+            )}
+          </button>
+
+          {/* Card Breviare */}
+          <button
+            onClick={() => {
+              setActiveTab('breviare');
+              setActiveGhid(null);
+            }}
+            className={`group relative flex-1 p-6 rounded-2xl border-2 transition-all duration-300 flex items-center gap-4 ${
+              activeTab === 'breviare'
+                ? // STARE ACTIVĂ - Gradient Teal/Cyan cu Glow
+                  'bg-gradient-to-br from-teal-500 via-cyan-500 to-cyan-600 text-white border-cyan-400 shadow-[0_0_30px_rgba(6,182,212,0.4)] transform scale-[1.02]'
+                : // STARE INACTIVĂ - Gri recesat
+                  'bg-gray-800/40 text-gray-400 border-gray-700 hover:bg-gray-800/60 hover:border-gray-600 hover:text-gray-200'
+            }`}
+          >
+            {/* Icon Mare */}
+            <span className="text-4xl filter drop-shadow-md">
+              {activeTab === 'breviare' ? '🧮' : '📋'}
+            </span>
+            
+            {/* Text */}
+            <div className="text-left">
+              <h3 className="font-bold text-xl mb-1">Breviare de Calcul</h3>
+              <p className={`text-sm ${activeTab === 'breviare' ? 'text-cyan-100' : 'text-gray-500'}`}>
+                Formule și calculatoare interactive
+              </p>
+            </div>
+
+            {/* Indicator Activ */}
+            {activeTab === 'breviare' && (
+              <span className="absolute top-4 right-4 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-cyan-200"></span>
+              </span>
+            )}
+          </button>
+        </div>
         </div>
       </div>
-
       {/* Breadcrumb */}
       {activeTab === 'ghiduri' && activeGhid && activeGhidInfo && (
         <div className="bg-gray-800/50 border-b border-gray-700">
