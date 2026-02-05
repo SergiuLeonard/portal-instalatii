@@ -34,7 +34,7 @@ export default function ProfilPage() {
               
               {/* Info */}
               <div className="text-center md:text-left flex-1">
-                <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                <h1 className="text-2xl sm:text-4xl font-bold text-white px-2 sm:px-6 mb-2">
                   Sergiu-Leonard Cherecheș
                 </h1>
                 <p className="text-xl text-blue-400 mb-4">

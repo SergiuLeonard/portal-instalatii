@@ -77,7 +77,7 @@ export default function HomePage() {
             </div>
 
             {/* Main heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-4xl font-bold px-2 sm:px-6 mb-4 text-white">
               Totul despre{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                 Instalații în Construcții
