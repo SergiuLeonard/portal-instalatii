@@ -27,7 +27,7 @@ export default function NavBar() {
             href="/" 
             className="flex items-center gap-2 text-white font-bold text-lg hover:text-blue-400 transition-colors"
           >
-            <span className="text-2xl">🏗️</span>
+            <span className="text-sm">🏗️</span>
             <span className="hidden sm:inline">Portal Instalații</span>
           </Link>
 

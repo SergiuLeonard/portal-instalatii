@@ -88,3 +88,26 @@ p, li {
   padding: 2rem 1.5rem;
 }
 
+/* Text mai mic pe mobil pentru calculatoare */
+@media (max-width: 640px) {
+  /* Reduce dimensiunea titlurilor în paginile de calculatoare */
+  .calculator-container h1,
+  .calculator-container h2 {
+    font-size: 1.25rem !important; /* 20px în loc de 24-32px */
+  }
+  
+  .calculator-container input,
+  .calculator-container select {
+    font-size: 16px !important; /* Previne zoom pe iOS */
+    padding: 0.5rem !important;
+  }
+  
+  .calculator-container label {
+    font-size: 0.875rem !important; /* 14px */
+  }
+  
+  /* Dacă folosești clase Tailwind, ajustează padding-ul */
+  .calculator-container {
+    padding: 0.5rem !important;
+  }
+}

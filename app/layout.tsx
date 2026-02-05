@@ -12,6 +12,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Portal AI – Instalații",
   description: "Portal profesional pentru inginerie instalații",
+  manifest: '/manifest.json',
 };
 
 export default function RootLayout({
@@ -29,3 +30,6 @@ export default function RootLayout({
   );
 }
 
+export const viewport = {
+  themeColor: '#0ea5e9',  // ← mută aici
+}
