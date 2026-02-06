@@ -1,185 +1,114 @@
 @import "tailwindcss";
 
-/* =========================
-   BASE TYPOGRAPHY
-========================= */
+/* ========================
+   RESET & BASE
+======================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html, body {
-  font-family: inherit;
-  margin: 0.5rem;
-  padding: 0.5rem;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Ubuntu, Cantarell, sans-serif;
 }
 
-h1, h2, h3 {
-  font-weight: 600;
-}
-
-p, li {
-  font-weight: 400;
-}
-
-/* =========================
+/* ========================
    THEME
-========================= */
+======================== */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --bg-gradient: linear-gradient(
+    180deg,
+    #0b132b 0%,
+    #0f172a 50%,
+    #020617 100%
+  );
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+  --card-bg: rgba(30, 41, 59, 0.6);
+  --accent: #3b82f6;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-}
-/* =========================
-   LAYOUT
-========================= */
-
-main {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  min-height: 100vh;
 }
 
-section {
-  margin-bottom: 3rem;
-}
+/* ========================
+   TYPOGRAPHY
+======================== */
 
-h1 {
-  margin-bottom: 1rem;
-}
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
 
-h2 {
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-}
-
-h3 {
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-ul {
-  margin-left: 1.25rem;
-  margin-top: 0.5rem;
-}
-
-p, li {
+p {
   line-height: 1.6;
+  color: var(--text-muted);
 }
 
-/* =========================
-   PAGE LAYOUT
-========================= */
+/* ========================
+   LAYOUT
+======================== */
 
 .page-layout {
-  display: grid;
-  grid-template-columns: 0.5fr minmax(0, 960px) 1.5fr;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .page-content {
-  padding: 2rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
-/* Text mai mic pe mobil pentru calculatoare */
-@media (max-width: 640px) {
-  /* Reduce dimensiunea titlurilor în paginile de calculatoare */
-  .calculator-container h1,
-  .calculator-container h2 {
-    font-size: 1.25rem !important; /* 20px în loc de 24-32px */
-  }
-  
-  .calculator-container input,
-  .calculator-container select {
-    font-size: 16px !important; /* Previne zoom pe iOS */
-    padding: 0.5rem !important;
-  }
-  
-  .calculator-container label {
-    font-size: 0.875rem !important; /* 14px */
-  }
-  
-  /* Dacă folosești clase Tailwind, ajustează padding-ul */
-  .calculator-container {
-    padding: 0.5rem !important;
-  }
+/* ========================
+   NAVBAR
+======================== */
+
+nav {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  background: rgba(15, 23, 42, 0.9);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
-/* Pe mobil - doar fonturi mai mici, fără să stricăm layout-ul */
-@media (max-width: 640px) {
-  /* Reducem doar fonturile, nu și layout-ul */
-  body {
-    font-size: 14px;
-  }
-  
-  /* Titluri mai mici dar păstrăm alinierea */
-  h1, h1.text-4xl, h1.text-3xl {
-    font-size: 1.5rem !important;
-    line-height: 1.2 !important;
-  }
-  
-  h2, h2.text-2xl {
-    font-size: 1.125rem !important; /* 18px */
-  }
-  
-  /* Text descriptiv mai mic */
-  p, .text-lg {
-    font-size: 0.9rem !important;
-  }
-  
-  /* Butoane - doar padding mai mic, nu width 100% */
-  button {
-    padding: 0.5rem 1rem !important;
-    font-size: 0.9rem !important;
-  }
-  
-  /* ELIMINĂM width: 100% care strică cardurile */
-  /* Păstrăm padding lateral mic doar pe containerul principal */
-  main.container, 
-  main > div:first-child {
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
-  }
-  
-  /* Cardurile rămân ca sunt, doar le facem să ocupe toată lățimea disponibilă */
-  .card, 
-  [class*="rounded-"],
-  [class*="shadow-"],
-  [class*="bg-"] > div,
-  section > div {
-    padding: 0.5rem !important; /* Padding mic interior */
-    margin: 0.25rem 0 !important; /* Margin mic între carduri */
-    border-radius: 0.5rem !important; /* Colțuri mai puțin rotunjite */
-    min-height: auto !important; /* Nu forțăm înălțime minimă */
-  }
-  
-  /* Textul din carduri trebuie să rămână în interior */
-  .card h3, 
-  .card p,
-  div[class*="Instalații"] {
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    max-width: 100% !important;
-    display: block !important;
-    text-align: left !important;
-  }
+nav a {
+  flex: 1;
+  text-align: center;
+  padding: 0.4rem 0;
+  border-radius: 0.5rem;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.9rem;
 }
 
-/* KILLER RULE - forțează tot ce e sticky să devină normal pe mobil */
-@media (max-width: 640px) {
-  * {
-    position: relative !important;
+nav a:hover {
+  background: rgba(59, 130, 246, 0.25);
+}
+
+/* ========================
+   DESKTOP MENU
+======================== */
+
+@media (min-width: 768px) {
+  nav {
+    justify-content: center;
   }
-  
-  /* Exceptăm elementele care chiar trebuie să fie absolute (ca iconițele) */
-  svg, img, button svg {
-    position: static !important;
+
+  nav a {
+    flex: none;
+    padding: 0.5rem 1rem;
   }
 }
